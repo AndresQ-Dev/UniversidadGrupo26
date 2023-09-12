@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 public class Conexion {
  
     private static Connection conexion=null;
-    private static final String URL="jdbc.mariadb://localhost/ULPUniversity";
+    private static final String URL="jdbc:mariadb://localhost/ULPUniversity";
     private static final String USER="root";
     private static final String PASS="";
 
@@ -19,7 +19,7 @@ public class Conexion {
     }
     
     public static Connection obtenerConexion(){
-        if (conexion!=null) {
+        if (conexion==null) {
             try {
                 conexion=DriverManager.getConnection(URL, USER, PASS);
                 System.out.println("Conectado!!!");
