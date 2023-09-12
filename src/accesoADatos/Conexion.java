@@ -22,7 +22,7 @@ public class Conexion {
         if (conexion==null) {
             try {
                 conexion=DriverManager.getConnection(URL, USER, PASS);
-                System.out.println("Conectado!!!");
+                //System.out.println("Conectado!!!");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error de Conexión: "+ex.getMessage());
             }
