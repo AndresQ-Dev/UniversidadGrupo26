@@ -17,9 +17,17 @@ public class Main {
         /*System.out.println("dni: "+encontrado.getDni());
         System.out.println("apellido: "+encontrado.getApellido());
         System.out.println("nombre: "+encontrado.getNombre());*/
-        Alumno encontradodni=alumnoData.buscarAlumnoPorDni(25789456);
-        System.out.println("apellido: "+encontradodni.getApellido());
-        System.out.println("nombre: "+encontradodni.getNombre());
+        
+//        Alumno encontradodni=alumnoData.buscarAlumnoPorDni(25789456);
+//        System.out.println("apellido: "+encontradodni.getApellido());
+//        System.out.println("nombre: "+encontradodni.getNombre());
+//Alumno lista=alumnoData.listarAlumnos(); //
+ for (Alumno alumno:alumnoData.listarAlumnos()){
+             System.out.println(alumno.getIdAlumno());
+             System.out.println(alumno.getApellido());
+             System.out.println(alumno.getNombre());
+ 
+ }
     }
 
 }

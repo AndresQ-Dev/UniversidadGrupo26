@@ -7,6 +7,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 public class AlumnoData {
@@ -92,5 +94,30 @@ public class AlumnoData {
         return alumno;
     }
     
-
+public List<Alumno> listarAlumnos() {
+   List<Alumno> alumnos=new ArrayList<>();
+   try {
+       String sql="SELECT * FROM alumno WHERE estado=1";
+       PreparedStatement ps=con.prepareStatement(sql);
+       ResultSet rs=ps.executeQuery();
+       
+       while (rs.next()){
+           Alumno alumno=new Alumno();
+           alumno.setIdAlumno(rs.getInt("idAlumno"));
+       alumno.setDni(rs.getInt("dni"));
+       alumno.setApellido(rs.getString("apellido"));
+       alumno.setNombre(rs.getString("nombre"));
+       alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+       alumno.setActivo(rs.getBoolean("estado"));
+       alumnos.add(alumno);
+       }
+       ps.close();
+       
+   } catch (SQLException ex) {
+       JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alumno"+ex.getMessage());
+       
+   }
+   return alumnos;    
+    
+}
 }
