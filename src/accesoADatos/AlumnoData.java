@@ -10,6 +10,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.sql.*;
 
 public class AlumnoData {
 
@@ -120,4 +121,42 @@ public List<Alumno> listarAlumnos() {
    return alumnos;    
     
 }
+
+    public void modificarAlumno(Alumno alumno) {
+        String sql = "UPDATE alumno SET dni=?, apellido=?,Nombre=?, fechaNacimiento=?"
+                + "WHERE idAlumno=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, alumno.getDni());
+            ps.setNString(2, alumno.getApellido());
+            ps.setString(3, alumno.getNombre());
+            ps.setDate(4, Date.valueOf(alumno.getFechaNac()));
+            ps.setInt(5, alumno.getIdAlumno());
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Alumno modificado: ");
+            }
+        } catch (SQLSyntaxErrorException sx) {
+            JOptionPane.showMessageDialog(null, "Error en Sintaxis de Query: \n" + sx.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de acceso a BD " + ex.getMessage());
+        }
+    }
+
+    public void eliminarAlumno(int id) {
+        String sql = "UPDATE alumno SET estado=0 WHERE idAlumno=?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Alumno eliminado");
+            }
+        } catch (SQLSyntaxErrorException sx) {
+            JOptionPane.showMessageDialog(null, "Error en Sintaxis de Query: \n" + sx.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de acceso a BD " + ex.getMessage());
+        }
+    }
+
 }

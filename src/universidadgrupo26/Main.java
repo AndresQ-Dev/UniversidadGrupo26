@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
       
-        //Alumno alumno=new Alumno(40,25789456, "Sheeran", "Ed", LocalDate.of(1985,4,23),true);
+        Alumno alumno=new Alumno(40,25780235, "Sheeran", "Ed", LocalDate.of(1988,9,28),true);
         AlumnoData alumnoData=new AlumnoData();
         //alumnoData.guardarAlumno(alumno);
         //Alumno encontrado=alumnoData.buscarAlumno(40);
@@ -22,12 +22,20 @@ public class Main {
 //        System.out.println("apellido: "+encontradodni.getApellido());
 //        System.out.println("nombre: "+encontradodni.getNombre());
 //Alumno lista=alumnoData.listarAlumnos(); //
- for (Alumno alumno:alumnoData.listarAlumnos()){
+ /*for (Alumno alumno:alumnoData.listarAlumnos()){
              System.out.println(alumno.getIdAlumno());
              System.out.println(alumno.getApellido());
              System.out.println(alumno.getNombre());
+ }*/
  
- }
+ //Metodo modificarAlumno
+ //alumnoData.modificarAlumno(alumno);
+ 
+ //Método eliminarAlumno
+ alumnoData.eliminarAlumno(27);
+        
+ 
+ 
     }
 
 }
