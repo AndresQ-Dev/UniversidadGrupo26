@@ -24,7 +24,7 @@ public class Conexion {
                 conexion=DriverManager.getConnection(URL, USER, PASS);
                 //System.out.println("Conectado!!!");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de Conexión: "+ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error de Conexión:\nVerifique Servicios de Acceso a Base de Datos. \n"+ex.getMessage());
             }
         }
         return conexion;
