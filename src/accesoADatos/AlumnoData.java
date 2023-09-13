@@ -142,7 +142,7 @@ public List<Alumno> listarAlumnos() {
             JOptionPane.showMessageDialog(null, "Error de acceso a BD " + ex.getMessage());
         }
     }
-
+//TODO Agregar if para que no vuelva a eliminar al mismo alumno
     public void eliminarAlumno(int id) {
         String sql = "UPDATE alumno SET estado=0 WHERE idAlumno=?";
         try {
