@@ -3,6 +3,8 @@ package accesoADatos;
 import entidades.Materia;
 import java.sql.*;
 import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -60,6 +62,27 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "No se puede acceder a Materia: " + ex.getMessage());
         }
         return materia;
+    }
+
+    public void modificarMateria(Materia materia) {
+        String sql = "UPDATE materia SET nombre=?, año=? WHERE idMateria=?";
+        PreparedStatement ps;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, materia.getNombre());
+            ps.setInt(2, materia.getAnioMateria());
+            ps.setInt(3, materia.getIdMateria());
+            int exito = ps.executeUpdate();
+            if (exito== 1) {
+                JOptionPane.showMessageDialog(null, "Materia Actualizada.");
+            }else JOptionPane.showMessageDialog(null, "No se encontró idMateria");
+
+        }catch (SQLSyntaxErrorException sx){
+            JOptionPane.showMessageDialog(null, "Error de Sintaxis: "+sx.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder a Materia: " + ex.getMessage());
+        }
+
     }
 
 }

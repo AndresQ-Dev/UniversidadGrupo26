@@ -41,9 +41,9 @@ public class Main {
         MateriaData materiaData = new MateriaData();
 //        materiaData.guardarMateria(materia);
 
-//Método buscar Materia        
-        Materia materiaEncontrada = materiaData.buscarMateria(200);
-        if (materiaEncontrada != null) {
+        //Método buscar Materia        
+        //Materia materiaEncontrada = materiaData.buscarMateria();
+        /*if (materiaEncontrada != null) {
             System.out.println("Id: " + materiaEncontrada.getIdMateria());
             System.out.println("Nombre: " + materiaEncontrada.getNombre());
             System.out.println("Año: " + materiaEncontrada.getAnioMateria());
@@ -52,6 +52,12 @@ public class Main {
             System.out.println("Materia no encontrada.");
         }
 
+        //Método para Actualizar Materia     
+        
+        Materia materiaNew=new Materia(100,"Sistemas Operativos IV", 2, true);
+        materiaData.modificarMateria(materiaNew);*/
+        
+        
     }
 
 }
