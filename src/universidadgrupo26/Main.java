@@ -40,13 +40,15 @@ public class Main {
 //        Materia materia = new Materia("Fisica II", 3, true);
         MateriaData materiaData = new MateriaData();
 //        materiaData.guardarMateria(materia);
-        Materia materiaEncontrada = materiaData.buscarMateria(10);
-        if (materiaEncontrada!=null){
-            System.out.println("Id: "+materiaEncontrada.getIdMateria());
-            System.out.println("Nombre: "+materiaEncontrada.getNombre());
-            System.out.println("Año: "+materiaEncontrada.getAnioMateria());
-            
-        }else{
+
+//Método buscar Materia        
+        Materia materiaEncontrada = materiaData.buscarMateria(200);
+        if (materiaEncontrada != null) {
+            System.out.println("Id: " + materiaEncontrada.getIdMateria());
+            System.out.println("Nombre: " + materiaEncontrada.getNombre());
+            System.out.println("Año: " + materiaEncontrada.getAnioMateria());
+
+        } else {
             System.out.println("Materia no encontrada.");
         }
 
