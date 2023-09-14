@@ -182,5 +182,14 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error de acceso a BD " + ex.getMessage());
         }
     }
+    
+    public boolean existeAlumno(int id) throws SQLException {
+    String sqlSelect = "SELECT 1 FROM alumno WHERE idAlumno=?";
+    PreparedStatement selectPs = con.prepareStatement(sqlSelect);
+    selectPs.setInt(1, id);
+    ResultSet resultSet = selectPs.executeQuery();
+    
+    return resultSet.next();
+}
 
 }

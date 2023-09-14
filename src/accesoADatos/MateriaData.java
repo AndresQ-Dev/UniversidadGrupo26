@@ -33,7 +33,7 @@ public class MateriaData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia" + ex.getMessage());
-        }
+        } 
     }
 
 }
