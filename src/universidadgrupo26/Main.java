@@ -13,20 +13,18 @@ public class Main {
     public static void main(String[] args) {
         //Método guardarAlumno
         //Alumno alumno=new Alumno(40,25780235, "Sheeran", "Ed", LocalDate.of(1988,9,28),true);
-        AlumnoData alumnoData=new AlumnoData();
+        AlumnoData alumnoData = new AlumnoData();
         /*alumnoData.guardarAlumno(alumno);*/
-        
+
         //Método buscarAlumno por id
         /*Alumno encontrado=alumnoData.buscarAlumno(40);
         System.out.println("dni: "+encontrado.getDni());
         System.out.println("apellido: "+encontrado.getApellido());
         System.out.println("nombre: "+encontrado.getNombre());*/
-        
         //Método buscarAlumnoPorDni
         /*Alumno encontradodni=alumnoData.buscarAlumnoPorDni(25789456);
         System.out.println("apellido: "+encontradodni.getApellido());
         System.out.println("nombre: "+encontradodni.getNombre());*/
-        
         //Método listarAlumno
         /*Alumno lista=alumnoData.listarAlumnos(); 
         for (Alumno alumno:alumnoData.listarAlumnos()){
@@ -34,19 +32,24 @@ public class Main {
              System.out.println(alumno.getApellido());
              System.out.println(alumno.getNombre());
         }*/
- 
         //Metodo modificarAlumno
         /*alumnoData.modificarAlumno(alumno);
         //Método eliminarAlumno*/
-        alumnoData.eliminarAlumno(110);
-
+        //alumnoData.eliminarAlumno(190);
         //Metodo guardarMateria
-//        Materia materia = new Materia("Algebra II", 2, true);
-//        MateriaData materiaData = new MateriaData();
+//        Materia materia = new Materia("Fisica II", 3, true);
+        MateriaData materiaData = new MateriaData();
 //        materiaData.guardarMateria(materia);
- 
- 
- 
+        Materia materiaEncontrada = materiaData.buscarMateria(10);
+        if (materiaEncontrada!=null){
+            System.out.println("Id: "+materiaEncontrada.getIdMateria());
+            System.out.println("Nombre: "+materiaEncontrada.getNombre());
+            System.out.println("Año: "+materiaEncontrada.getAnioMateria());
+            
+        }else{
+            System.out.println("Materia no encontrada.");
+        }
+
     }
 
 }
