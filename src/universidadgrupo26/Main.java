@@ -12,9 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
         //Método guardarAlumno
-        /*Alumno alumno=new Alumno(40,25780235, "Sheeran", "Ed", LocalDate.of(1988,9,28),true);
+        //Alumno alumno=new Alumno(40,25780235, "Sheeran", "Ed", LocalDate.of(1988,9,28),true);
         AlumnoData alumnoData=new AlumnoData();
-        alumnoData.guardarAlumno(alumno);*/
+        /*alumnoData.guardarAlumno(alumno);*/
         
         //Método buscarAlumno por id
         /*Alumno encontrado=alumnoData.buscarAlumno(40);
@@ -37,13 +37,13 @@ public class Main {
  
         //Metodo modificarAlumno
         /*alumnoData.modificarAlumno(alumno);
-        //Método eliminarAlumno
-        //alumnoData.eliminarAlumno(27);*/
+        //Método eliminarAlumno*/
+        alumnoData.eliminarAlumno(110);
 
         //Metodo guardarMateria
-        Materia materia = new Materia("Algebra II", 2, true);
-        MateriaData materiaData = new MateriaData();
-        materiaData.guardarMateria(materia);
+//        Materia materia = new Materia("Algebra II", 2, true);
+//        MateriaData materiaData = new MateriaData();
+//        materiaData.guardarMateria(materia);
  
  
  
