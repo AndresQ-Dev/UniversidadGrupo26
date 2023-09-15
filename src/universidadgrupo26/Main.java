@@ -7,6 +7,8 @@ import entidades.Alumno;
 import entidades.Materia;
 import java.sql.Connection;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -57,7 +59,21 @@ public class Main {
         Materia materiaNew=new Materia(100,"Sistemas Operativos IV", 2, true);
         materiaData.modificarMateria(materiaNew);*/
         
+        //Método eliminarMateria
+        //materiaData.eliminarMateria(7);
         
+        //Método listarMaterias
+        List<Materia>materias=new ArrayList();
+        materias=materiaData.listarMaterias();
+        System.out.println("          Listado de materias vigentes a la fecha");
+        System.out.println("  ");
+        for (Materia materia : materias) {
+            System.out.println("Id: " +materia.getIdMateria());
+            System.out.println("nombre: " +materia.getNombre());
+            System.out.println("Año: " +materia.getAnioMateria());
+            System.out.println("  ");
+            
+        }
     }
 
 }

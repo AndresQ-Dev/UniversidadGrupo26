@@ -3,6 +3,8 @@ package accesoADatos;
 import entidades.Materia;
 import java.sql.*;
 import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -82,7 +84,75 @@ public class MateriaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede acceder a Materia: " + ex.getMessage());
         }
-
+    }
+        
+        public void eliminarMateria(int idMateria) {
+        String sql = "UPDATE materia SET estado=0 WHERE idmateria=?";
+        try {
+            if (existeMateria(idMateria)) {
+                if (verificarEstado(idMateria)) {
+                    PreparedStatement ps = con.prepareStatement(sql);
+                    ps.setInt(1, idMateria);
+                    int exito = ps.executeUpdate();
+                    if (exito > 0) {
+                        JOptionPane.showMessageDialog(null, "La materia fue eliminada");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "La materia ya fue eliminada");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe la materia");
+            }
+        } catch (SQLSyntaxErrorException sx) {
+            JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder a la materia" + ex.getMessage());
+        }
     }
 
+        private boolean existeMateria(int id) throws SQLException{
+            String sql="SELECT idMateria FROM materia WHERE idMateria=?";
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs=ps.executeQuery();
+            return rs.next();   
+        }
+        
+        private boolean verificarEstado(int id) throws SQLException{
+            String sql="SELECT estado FROM materia WHERE idMateria=?";
+            PreparedStatement ps=con.prepareStatement(sql);
+            ps.setInt(1,id);
+            ResultSet rs=ps.executeQuery();
+            if (rs.next()) {
+                return rs.getBoolean("estado");
+                
+            }else {
+            return false;   
+        } 
+        
+    }
+        public List<Materia> listarMaterias() {
+        List<Materia> materias = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM materia WHERE estado=1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                materia.setActivo(rs.getBoolean("estado"));
+                materias.add(materia);
+            }
+            ps.close();
+        } catch (SQLSyntaxErrorException sx) {
+            JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder a la materia" + ex.getMessage());
+        }
+        return materias;
+    }
 }
+
