@@ -2,9 +2,11 @@ package universidadgrupo26;
 
 import accesoADatos.AlumnoData;
 import accesoADatos.Conexion;
+import accesoADatos.InscripcionData;
 import accesoADatos.MateriaData;
 import entidades.Alumno;
 import entidades.Materia;
+import entidades.Inscripcion;
 import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         //Método guardarAlumno
         //Alumno alumno=new Alumno(40,25780235, "Sheeran", "Ed", LocalDate.of(1988,9,28),true);
-        AlumnoData alumnoData = new AlumnoData();
+        //AlumnoData alumnoData = new AlumnoData();
         /*alumnoData.guardarAlumno(alumno);*/
 
         //Método buscarAlumno por id
@@ -40,7 +42,7 @@ public class Main {
         //alumnoData.eliminarAlumno(190);
         //Metodo guardarMateria
 //        Materia materia = new Materia("Fisica II", 3, true);
-        MateriaData materiaData = new MateriaData();
+        //MateriaData materiaData = new MateriaData();
 //        materiaData.guardarMateria(materia);
 
         //Método buscar Materia        
@@ -63,7 +65,7 @@ public class Main {
         //materiaData.eliminarMateria(7);
         
         //Método listarMaterias
-        List<Materia>materias=new ArrayList();
+        /*List<Materia>materias=new ArrayList();
         materias=materiaData.listarMaterias();
         System.out.println("          Listado de materias vigentes a la fecha");
         System.out.println("  ");
@@ -72,8 +74,15 @@ public class Main {
             System.out.println("nombre: " +materia.getNombre());
             System.out.println("Año: " +materia.getAnioMateria());
             System.out.println("  ");
+        }*/
             
-        }
+        
+    //Método guardarInscripcion
+    Alumno alumno=new Alumno(40,25780235, "Sheeran", "Ed", LocalDate.of(1988,9,28),true);
+    Materia materia = new Materia(7,"Fisica", 2, true);
+    Inscripcion inscripcion=new Inscripcion(alumno, materia, 8);
+    InscripcionData inscripcionData=new InscripcionData();
+    inscripcionData.guardarInscripcion(inscripcion);
     }
 
 }
