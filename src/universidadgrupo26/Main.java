@@ -17,7 +17,7 @@ public class Main {
     public static void main(String[] args) {
         //Método guardarAlumno
         //Alumno alumno=new Alumno(40,25780235, "Sheeran", "Ed", LocalDate.of(1988,9,28),true);
-        //AlumnoData alumnoData = new AlumnoData();
+        AlumnoData alumnoData = new AlumnoData();
         /*alumnoData.guardarAlumno(alumno);*/
 
         //Método buscarAlumno por id
@@ -42,7 +42,7 @@ public class Main {
         //alumnoData.eliminarAlumno(190);
         //Metodo guardarMateria
 //        Materia materia = new Materia("Fisica II", 3, true);
-        //MateriaData materiaData = new MateriaData();
+        MateriaData materiaData = new MateriaData();
 //        materiaData.guardarMateria(materia);
 
         //Método buscar Materia        
@@ -78,11 +78,28 @@ public class Main {
             
         
     //Método guardarInscripcion
-    Alumno alumno=new Alumno(40,25780235, "Sheeran", "Ed", LocalDate.of(1988,9,28),true);
-    Materia materia = new Materia(7,"Fisica", 2, true);
-    Inscripcion inscripcion=new Inscripcion(alumno, materia, 8);
-    InscripcionData inscripcionData=new InscripcionData();
-    inscripcionData.guardarInscripcion(inscripcion);
+        /*Alumno alumno = alumnoData.buscarAlumno(9);
+        Materia materia = materiaData.buscarMateria(4);
+        Inscripcion inscripcion = new Inscripcion(alumno, materia, 8);*/
+        InscripcionData inscripcionData = new InscripcionData();
+        //inscripcionData.guardarInscripcion(inscripcion);
+    
+    //Método obtenerInscripciones  
+        List<Inscripcion> inscripciones = new ArrayList();
+        inscripciones = inscripcionData.obtenerInscripciones();
+        System.out.println("Listado de Inscripciones");
+        System.out.println(" ");
+        for (Inscripcion inscripcion : inscripciones) {
+            if(inscripcion.getAlumno()!=null || inscripcion.getMateria()!=null){
+            System.out.println("Id: " + inscripcion.getIdInscripcion());
+            System.out.println("apellido: " + inscripcion.getAlumno().getApellido());
+            System.out.println("materia: " + inscripcion.getMateria().getNombre());
+            System.out.println(" ");
+            }else{
+                   System.out.println("El objeto es nulo"); 
+                    }
+        }
+        
     }
 
 }

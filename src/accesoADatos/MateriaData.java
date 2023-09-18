@@ -57,7 +57,7 @@ public class MateriaData {
                 materia.setActivo(rs.getBoolean("estado"));
 
             } else {
-                JOptionPane.showMessageDialog(null, "Materia no encontrada");
+            //    JOptionPane.showMessageDialog(null, "Materia no encontrada");
             }
 
         } catch (SQLException ex) {
