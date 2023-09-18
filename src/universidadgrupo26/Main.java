@@ -60,10 +60,8 @@ public class Main {
         
         Materia materiaNew=new Materia(100,"Sistemas Operativos IV", 2, true);
         materiaData.modificarMateria(materiaNew);*/
-        
         //Método eliminarMateria
         //materiaData.eliminarMateria(7);
-        
         //Método listarMaterias
         /*List<Materia>materias=new ArrayList();
         materias=materiaData.listarMaterias();
@@ -75,31 +73,25 @@ public class Main {
             System.out.println("Año: " +materia.getAnioMateria());
             System.out.println("  ");
         }*/
-            
-        
-    //Método guardarInscripcion
+        //Método guardarInscripcion
         /*Alumno alumno = alumnoData.buscarAlumno(9);
         Materia materia = materiaData.buscarMateria(4);
         Inscripcion inscripcion = new Inscripcion(alumno, materia, 8);*/
         InscripcionData inscripcionData = new InscripcionData();
         //inscripcionData.guardarInscripcion(inscripcion);
-    
-    //Método obtenerInscripciones  
+
+        //Método obtenerInscripciones  
         List<Inscripcion> inscripciones = new ArrayList();
         inscripciones = inscripcionData.obtenerInscripciones();
         System.out.println("Listado de Inscripciones");
         System.out.println(" ");
         for (Inscripcion inscripcion : inscripciones) {
-            if(inscripcion.getAlumno()!=null || inscripcion.getMateria()!=null){
             System.out.println("Id: " + inscripcion.getIdInscripcion());
             System.out.println("apellido: " + inscripcion.getAlumno().getApellido());
             System.out.println("materia: " + inscripcion.getMateria().getNombre());
-            System.out.println(" ");
-            }else{
-                   System.out.println("El objeto es nulo"); 
-                    }
+            System.out.println("********************");
+
         }
-        
     }
 
 }
