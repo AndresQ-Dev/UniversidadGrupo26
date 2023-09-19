@@ -81,8 +81,10 @@ public class Main {
         //inscripcionData.guardarInscripcion(inscripcion);
 
         //Método obtenerInscripciones  
-        List<Inscripcion> inscripciones = new ArrayList();
-        inscripciones = inscripcionData.obtenerInscripciones();
+        //List<Inscripcion> inscripciones = new ArrayList();
+        //inscripciones = inscripcionData.obtenerInscripciones();
+        //Método obetenerInscripcionesPorAlumno
+        /*inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(1);
         System.out.println("Listado de Inscripciones");
         System.out.println(" ");
         for (Inscripcion inscripcion : inscripciones) {
@@ -91,7 +93,54 @@ public class Main {
             System.out.println("materia: " + inscripcion.getMateria().getNombre());
             System.out.println("==========================");
 
-        }
+        }*/
+        
+        //Método obtenerMateriasCursadas
+        /*List<Materia> listaCursadas = new ArrayList();
+        listaCursadas=inscripcionData.obtenerMateriasCursadas(1);
+        System.out.println("Listado de Materias Cursadas");
+        System.out.println(" ");
+        for (Materia listaCursada : listaCursadas) {
+            System.out.println("Id " +listaCursada.getIdMateria());
+            System.out.println("Nombre "+listaCursada.getNombre());
+            System.out.println("Año "+listaCursada.getAnioMateria());
+            System.out.println("==========================");
+            
+        }*/
+        //Método obtenerMateriasNoCursadas
+        /*List<Materia> listaNoCursadas = new ArrayList();
+        listaNoCursadas=inscripcionData.obtenerMateriasNoCursadas(1);
+        System.out.println("Listado de Materias No Cursadas");
+        System.out.println(" ");
+        for (Materia listaNoCursada : listaNoCursadas) {
+            System.out.println("Id " +listaNoCursada.getIdMateria());
+            System.out.println("Nombre "+listaNoCursada.getNombre());
+            System.out.println("Año "+listaNoCursada.getAnioMateria());
+            System.out.println("==========================");
+        
+        }*/
+        //Método borrarInscripcionMateriaAlumno
+        //inscripcionData.borrarInscripcionMateriaAlumno(1, 2);
+      
+        //Método actualizarNota
+        //inscripcionData.actualizarNota(1, 1, 10);
+        
+        //TODO Agregar sout para mostrar materia
+        //Método obtenerAlumnosPorMateria
+        List<Alumno> alumnoPorMateria = new ArrayList<>();
+       alumnoPorMateria=inscripcionData.obtenerAlumnoPorMateria(1);
+        System.out.println("Listado de Alumnos Por Materia");
+        System.out.println(" ");
+        for (Alumno alumnoPorMaterias : alumnoPorMateria) {
+            System.out.println("idAlumno " +alumnoPorMaterias.getIdAlumno());
+            System.out.println("DNI " +alumnoPorMaterias.getDni());
+            System.out.println("Apellido "+alumnoPorMaterias.getApellido());
+            System.out.println("Nombre "+alumnoPorMaterias.getNombre());
+            System.out.println("==========================");
+       
     }
-
+    }
 }
+
+
+
