@@ -89,7 +89,7 @@ public class Main {
             System.out.println("Id: " + inscripcion.getIdInscripcion());
             System.out.println("apellido: " + inscripcion.getAlumno().getApellido());
             System.out.println("materia: " + inscripcion.getMateria().getNombre());
-            System.out.println("********************");
+            System.out.println("==========================");
 
         }
     }
