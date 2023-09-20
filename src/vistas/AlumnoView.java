@@ -201,9 +201,11 @@ public class AlumnoView extends javax.swing.JInternalFrame {
     Alumno alumnoEncontrado=alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
         if (alumnoEncontrado==null) {
             Alumno newAlumno=new Alumno();
-            newAlumno.setDni(alumnoEncontrado.getDni());
-            newAlumno.setApellido(alumnoEncontrado.getApellido());
-            newAlumno.setNombre(alumnoEncontrado.getNombre());
+            newAlumno.setDni(Integer.parseInt(dni));
+            newAlumno.setApellido(tfApellido.getText());
+            newAlumno.setNombre(tfNombre.getText());
+            newAlumno.setActivo(rbEstado.isSelected());
+            //newAlumno.setF;
         }
     }//GEN-LAST:event_bGuardarActionPerformed
 
