@@ -3,13 +3,15 @@ package vistas;
 import accesoADatos.AlumnoData;
 import entidades.Alumno;
 import java.sql.Date;
+import java.time.ZoneId;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author andres
  */
 public class AlumnoView extends javax.swing.JInternalFrame {
-
+    
     AlumnoData alumnoData = new AlumnoData();
 
     /**
@@ -180,11 +182,11 @@ public class AlumnoView extends javax.swing.JInternalFrame {
             tfNombre.setText(encontrado.getNombre());
             rbEstado.setSelected(encontrado.isActivo());
             jcFechaNacimiento.setDate(Date.valueOf(encontrado.getFechaNac()));
-
+            
         } else {
             clean();
         }
-
+        
 
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -197,15 +199,19 @@ public class AlumnoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bNuevoActionPerformed
 
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
-    String dni=tfDocumento.getText();
-    Alumno alumnoEncontrado=alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
-        if (alumnoEncontrado==null) {
-            Alumno newAlumno=new Alumno();
+        String dni = tfDocumento.getText();
+        Alumno alumnoEncontrado = alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
+        if (alumnoEncontrado == null) {
+            Alumno newAlumno = new Alumno();
             newAlumno.setDni(Integer.parseInt(dni));
             newAlumno.setApellido(tfApellido.getText());
             newAlumno.setNombre(tfNombre.getText());
             newAlumno.setActivo(rbEstado.isSelected());
-            //newAlumno.setF;
+            newAlumno.setFechaNac(jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            alumnoData.guardarAlumno(newAlumno);
+            clean();
+        }else{
+            JOptionPane.showMessageDialog(null, "Ya existe el Alumno");
         }
     }//GEN-LAST:event_bGuardarActionPerformed
 
