@@ -18,6 +18,8 @@ import java.util.logging.Logger;
 public class InscripcionData {
 
     private Connection con = null;
+    //private MateriaData materiaData;
+    //private AlumnoData alumnoData;
 
     public InscripcionData() {
         con = Conexion.obtenerConexion();

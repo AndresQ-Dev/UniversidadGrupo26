@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class Main {
 
@@ -94,7 +95,6 @@ public class Main {
             System.out.println("==========================");
 
         }*/
-        
         //Método obtenerMateriasCursadas
         /*List<Materia> listaCursadas = new ArrayList();
         listaCursadas=inscripcionData.obtenerMateriasCursadas(1);
@@ -121,26 +121,27 @@ public class Main {
         }*/
         //Método borrarInscripcionMateriaAlumno
         //inscripcionData.borrarInscripcionMateriaAlumno(1, 2);
-      
         //Método actualizarNota
         //inscripcionData.actualizarNota(1, 1, 10);
-        
         //TODO Agregar sout para mostrar materia
+        
         //Método obtenerAlumnosPorMateria
         List<Alumno> alumnoPorMateria = new ArrayList<>();
-       alumnoPorMateria=inscripcionData.obtenerAlumnoPorMateria(1);
+        alumnoPorMateria = inscripcionData.obtenerAlumnoPorMateria(4);
         System.out.println("Listado de Alumnos Por Materia");
         System.out.println(" ");
-        for (Alumno alumnoPorMaterias : alumnoPorMateria) {
-            System.out.println("idAlumno " +alumnoPorMaterias.getIdAlumno());
-            System.out.println("DNI " +alumnoPorMaterias.getDni());
-            System.out.println("Apellido "+alumnoPorMaterias.getApellido());
-            System.out.println("Nombre "+alumnoPorMaterias.getNombre());
-            System.out.println("==========================");
-       
-    }
+        if (!alumnoPorMateria.isEmpty()) {
+            for (Alumno alumnoPorMaterias : alumnoPorMateria) {
+                System.out.println("idAlumno " + alumnoPorMaterias.getIdAlumno());
+                System.out.println("DNI " + alumnoPorMaterias.getDni());
+                System.out.println("Apellido " + alumnoPorMaterias.getApellido());
+                System.out.println("Nombre " + alumnoPorMaterias.getNombre());
+                System.out.println("==========================");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No hay alumnos inscriptos en esta materia");
+        }
+        
+        //Prueba Método 
     }
 }
-
-
-
