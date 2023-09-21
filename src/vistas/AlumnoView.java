@@ -1,5 +1,6 @@
 /*
 AGREGAR VALIDACIONES
+
 */
 
 
@@ -195,6 +196,7 @@ public class AlumnoView extends javax.swing.JInternalFrame {
             
         } else {
             clean();
+            JOptionPane.showMessageDialog(null, "Alumno no encontrado");
         }
         
 

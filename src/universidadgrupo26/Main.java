@@ -127,7 +127,7 @@ public class Main {
         
         //Método obtenerAlumnosPorMateria
         List<Alumno> alumnoPorMateria = new ArrayList<>();
-        alumnoPorMateria = inscripcionData.obtenerAlumnoPorMateria(4);
+        alumnoPorMateria = inscripcionData.obtenerAlumnoPorMateria(1);
         System.out.println("Listado de Alumnos Por Materia");
         System.out.println(" ");
         if (!alumnoPorMateria.isEmpty()) {

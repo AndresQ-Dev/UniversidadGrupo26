@@ -12,6 +12,8 @@ public class PrincipalView extends javax.swing.JFrame {
      */
     public PrincipalView() {
         initComponents();
+        setLocationRelativeTo(null);
+        setTitle("ULP University");
     }
 
     /**
@@ -37,7 +39,6 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 700));
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -63,8 +64,18 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenuAlumno);
 
         jMenuMateria.setText("Materia");
+        jMenuMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuMateriaActionPerformed(evt);
+            }
+        });
 
         jMenuFormularioMateria.setText("Formulario de Materia");
+        jMenuFormularioMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuFormularioMateriaActionPerformed(evt);
+            }
+        });
         jMenuMateria.add(jMenuFormularioMateria);
 
         jMenuBar1.add(jMenuMateria);
@@ -111,6 +122,17 @@ public class PrincipalView extends javax.swing.JFrame {
     alumnoView.setVisible(true);
     alumnoView.moveToFront();        
     }//GEN-LAST:event_jMenuItemAlumnoActionPerformed
+
+    private void jMenuMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMateriaActionPerformed
+    
+    }//GEN-LAST:event_jMenuMateriaActionPerformed
+
+    private void jMenuFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormularioMateriaActionPerformed
+    MateriaView materiaView=new MateriaView();
+    jDesktopPane1.add(materiaView);
+    materiaView.setVisible(true);
+    materiaView.moveToFront();
+    }//GEN-LAST:event_jMenuFormularioMateriaActionPerformed
 
     /**
      * @param args the command line arguments
