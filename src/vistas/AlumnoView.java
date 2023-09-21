@@ -1,3 +1,8 @@
+/*
+AGREGAR VALIDACIONES
+*/
+
+
 package vistas;
 
 import accesoADatos.AlumnoData;
@@ -72,6 +77,11 @@ public class AlumnoView extends javax.swing.JInternalFrame {
         jLabel6.setText("Fecha de Nacimiento");
 
         bEliminar.setText("Eliminar");
+        bEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEliminarActionPerformed(evt);
+            }
+        });
 
         bNuevo.setText("Nuevo");
         bNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -214,6 +224,16 @@ public class AlumnoView extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Ya existe el Alumno");
         }
     }//GEN-LAST:event_bGuardarActionPerformed
+
+    private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
+    String dni=tfDocumento.getText();
+    Alumno alumnoEncontrado=alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
+        if (alumnoEncontrado!=null) {
+         alumnoData.eliminarAlumno(alumnoEncontrado.getIdAlumno());
+            clean();
+        }
+    
+    }//GEN-LAST:event_bEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
