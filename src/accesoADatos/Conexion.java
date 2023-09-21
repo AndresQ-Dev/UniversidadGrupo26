@@ -24,11 +24,22 @@ public class Conexion {
                 conexion=DriverManager.getConnection(URL, USER, PASS);
                 //System.out.println("Conectado!!!");
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de Conexión:\nVerifique Servicios de Acceso a Base de Datos. \n"+ex.getMessage());
+                JOptionPane.showMessageDialog(null, "Error de Conexión: Conexión Rechazada\nVerifique Servicios de Acceso a Base de Datos. \n"+ex.getMessage());
             }
         }
         return conexion;
     }
     
+    public static void cerrarConexion() {
+        try {
+            if (conexion != null) {
+                conexion.close();
+                conexion = null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al intentar cierre de conexión "+e.getMessage());
+
+        }
+    }
     
 }
