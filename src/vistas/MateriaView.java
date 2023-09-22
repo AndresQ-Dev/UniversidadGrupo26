@@ -1,11 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
 package vistas;
 
 import accesoADatos.MateriaData;
 import entidades.Materia;
+import java.awt.RenderingHints.Key;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,7 +11,10 @@ import javax.swing.JOptionPane;
  * @author telma
  */
 public class MateriaView extends javax.swing.JInternalFrame {
-MateriaData materiaData=new MateriaData();
+    
+    MateriaData materiaData = new MateriaData();
+    private boolean editando = false; //Flag para controlar si se está editando una materia
+
     /**
      * Creates new form MateriaView
      */
@@ -43,10 +44,33 @@ MateriaData materiaData=new MateriaData();
         bNuevo = new javax.swing.JButton();
         bEliminar = new javax.swing.JButton();
         bGuardar = new javax.swing.JButton();
-        bSalir = new javax.swing.JButton();
+        bEditar = new javax.swing.JButton();
+
+        setClosable(true);
 
         jLabel1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("         Materia");
+
+        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCodigoKeyTyped(evt);
+            }
+        });
+
+        tfNombre.setEditable(false);
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombreKeyTyped(evt);
+            }
+        });
+
+        tfanio.setEditable(false);
+        tfanio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfanioKeyTyped(evt);
+            }
+        });
 
         lCodigo.setText("Código");
 
@@ -55,6 +79,8 @@ MateriaData materiaData=new MateriaData();
         lNombre.setText("Nombre");
 
         lEstado.setText("Estado");
+
+        rbEstado.setEnabled(false);
 
         bBuscar.setText("Buscar");
         bBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,10 +105,10 @@ MateriaData materiaData=new MateriaData();
             }
         });
 
-        bSalir.setText("Salir");
-        bSalir.addActionListener(new java.awt.event.ActionListener() {
+        bEditar.setText("Editar");
+        bEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bSalirActionPerformed(evt);
+                bEditarActionPerformed(evt);
             }
         });
 
@@ -93,125 +119,215 @@ MateriaData materiaData=new MateriaData();
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(lEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
-                                .addComponent(lAño, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE))
-                            .addComponent(lCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bNuevo))
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(97, 97, 97)
-                                .addComponent(bBuscar))
-                            .addComponent(rbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(bEliminar)
-                                    .addGap(65, 65, 65)
-                                    .addComponent(bGuardar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(bSalir))
-                                .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(tfanio, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(248, 248, 248)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lEstado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lAño, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                            .addComponent(lCodigo, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                            .addComponent(bNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(97, 97, 97)
+                                        .addComponent(bBuscar))
+                                    .addComponent(rbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfanio, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tfNombre)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(bEliminar)
+                                .addGap(18, 18, 18)
+                                .addComponent(bGuardar)
+                                .addGap(18, 18, 18)
+                                .addComponent(bEditar)))
+                        .addGap(0, 105, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bBuscar))
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfanio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfanio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lAño, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(rbEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(rbEstado)
+                    .addComponent(lEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bEliminar)
                     .addComponent(bGuardar)
-                    .addComponent(bSalir)
-                    .addComponent(bNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47))
+                    .addComponent(bEditar)
+                    .addComponent(bNuevo))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
-        String idBuscado=tfCodigo.getText();
-        if(idBuscado.isEmpty()){
+        String idBuscado = tfCodigo.getText();
+        if (idBuscado.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Ingrese un código válido");
             return;
         }
-       int codigo=Integer.parseInt(idBuscado);
-       Materia materiaEncontrada=materiaData.buscarMateria(codigo);
-       if(materiaEncontrada!=null){
-           tfCodigo.setText(idBuscado);
-           tfNombre.setText(materiaEncontrada.getNombre());
-           tfanio.setText(Integer.toString(materiaEncontrada.getAnioMateria()));
-           rbEstado.setSelected(materiaEncontrada.isActivo());
-           } else {
+        int codigo = Integer.parseInt(idBuscado);
+        Materia materiaEncontrada = materiaData.buscarMateria(codigo);
+        if (materiaEncontrada != null) {
+            tfCodigo.setText(idBuscado);
+            tfNombre.setText(materiaEncontrada.getNombre());
+            tfanio.setText(Integer.toString(materiaEncontrada.getAnioMateria()));
+            rbEstado.setSelected(materiaEncontrada.isActivo());
+            rbEstado.setEnabled(true);
+        } else {
             clean();
             JOptionPane.showMessageDialog(null, "Materia no encontrada");
+            
+        }
         
-       }
-       
-       
-       
-       
-       
+
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void bNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoActionPerformed
         clean();
+        desactivarId();
+        activarNAE();
     }//GEN-LAST:event_bNuevoActionPerformed
 
-    private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
-        dispose();
-    }//GEN-LAST:event_bSalirActionPerformed
+    private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
+        if (!editando) {//si no se está editando...
+            String idMateria = tfCodigo.getText();
+            if (idMateria.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Ingrese un Código valido.");
+                return;
+            }
+            Materia materiaExistente = materiaData.buscarMateria(Integer.parseInt(idMateria));
+            
+            if (materiaExistente == null) {
+                JOptionPane.showMessageDialog(null, "No se encontró la materia");
+                return;
+            }
+            //habilito edicion de nombre y año ydesactivo ID
+            activarNAE();
+            desactivarId();
 
-    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
-        String nombreMateria=tfNombre.getText();
-        Materia materiaBuscada=materiaData.buscarMateriaPorNombre( nombreMateria);
-        if(materiaBuscada==null){
-            materiaData.guardarMateria(materiaBuscada);
-            materiaBuscada.setNombre(tfNombre.getText());
-            materiaBuscada.setAnio(tfanio.getText());
-            materiaBuscada.setActivo(rbEstado.isSelected());
-            materiaData.guardarMateria(materiaBuscada);
+            //Cambiar texto de botón
+            bEditar.setText("Terminar Edicion");
+            //cambio el estado de editando
+            editando = true;
+        } else {
+            //si se está editando...
+            int idMateria = Integer.parseInt(tfCodigo.getText());
+            String nombreMateria = tfNombre.getText();
+            int anioMateria = Integer.parseInt(tfanio.getText());
+            boolean estado = rbEstado.isSelected();
+
+            //validar si no estan vacios
+            if (nombreMateria.isEmpty() || tfanio.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Complete los campo");
+                return;
+            }
+            //creo una nueva instancia Materia
+            Materia materiaEditada = new Materia();
+            materiaEditada.setIdMateria(idMateria);
+            materiaEditada.setNombre(nombreMateria);
+            materiaEditada.setAnioMateria(anioMateria);
+            materiaEditada.setActivo(estado);
+            //llamo al método actualizar
+            materiaData.modificarMateria(materiaEditada);
+            
+            //limpiar
+            editando=false;
+            bEditar.setText("Editar");
             clean();
-        }else{
-            JOptionPane.showMessageDialog(null, "Ya existe la Materia");
+            activar();
+            
+            
         }
         
+
+    }//GEN-LAST:event_bEditarActionPerformed
+
+    private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        String nombreMateria = tfNombre.getText();
+        String anioMateria = tfanio.getText();
+
+        //Validar campos vacios
+        if (nombreMateria.isEmpty() || anioMateria.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Complete los campos");
+            return;
+        }
+        //Validar si materia existe por nombre
+        Materia materiaExistente = materiaData.buscarMateriaPorNombre(nombreMateria);
+        if (materiaExistente != null) {
+            //si existe, se notifica...
+            JOptionPane.showMessageDialog(null, "La materia ya existe, puede editarla.");
+        } else {
+            //si no existe setteo y guardo...
+            Materia nuevaMateria = new Materia();
+            nuevaMateria.setNombre(nombreMateria);
+            nuevaMateria.setAnioMateria(Integer.parseInt(anioMateria));
+            nuevaMateria.setActivo(rbEstado.isSelected());
+            materiaData.guardarMateria(nuevaMateria);
+        }
+        clean();
+        activar();
     }//GEN-LAST:event_bGuardarActionPerformed
+
+    private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
+        /*método para verificar si cada caracter es un numero del 0 al 9 por ASCII y
+        si no lo es borra el caracter.*/
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+        if (!numero) {
+            evt.consume();
+        }
+
+    }//GEN-LAST:event_tfCodigoKeyTyped
+
+    private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
+        /*método para verificar si cada caracter es una letra con el método
+        isLetter(). Y además verifica que si es un espacio lo deja escribir
+        Si no lo es se consume el caracter y no lo escribe .*/
+        if (!Character.isLetter(evt.getKeyChar()) && !(evt.getKeyChar() == KeyEvent.VK_SPACE)) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfNombreKeyTyped
+
+    private void tfanioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfanioKeyTyped
+        int key = evt.getKeyChar();
+        boolean numero = key >= 48 && key <= 57;
+        if (!numero) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_tfanioKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bBuscar;
+    private javax.swing.JButton bEditar;
     private javax.swing.JButton bEliminar;
     private javax.swing.JButton bGuardar;
     private javax.swing.JButton bNuevo;
-    private javax.swing.JButton bSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lAño;
     private javax.swing.JLabel lCodigo;
@@ -228,5 +344,22 @@ MateriaData materiaData=new MateriaData();
         tfNombre.setText("");
         tfanio.setText("");
         rbEstado.setSelected(false);
-}
+    }
+    
+    private void desactivarId() {
+        tfCodigo.setEditable(false);
+    }
+    
+    private void activar() {
+        tfCodigo.setEditable(true);
+        tfNombre.setEditable(false);
+        tfanio.setEditable(false);
+        rbEstado.setEnabled(false);
+    }
+    
+    private void activarNAE() {
+        tfNombre.setEditable(true);
+        tfanio.setEditable(true);
+        rbEstado.setEnabled(true);
+    }
 }

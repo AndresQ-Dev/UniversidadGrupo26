@@ -26,15 +26,14 @@ public class MateriaData {
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getAnioMateria());
             ps.setBoolean(3, materia.isActivo());
-            int exito = ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
-
+            ps.executeUpdate();
+            ResultSet rs=ps.getGeneratedKeys();
             if (rs.next()) {
-                materia.setIdMateria(rs.getInt(1));//"1" corresponde a la primera columna de la tabla
-                JOptionPane.showMessageDialog(null, "Materia ingresada correctamente");
+                int idMateria=rs.getInt(1);
+                JOptionPane.showMessageDialog(null, "Materia ingresada correctamente con Id: "+idMateria);
             }
-            ps.close();
-
+        } catch (SQLIntegrityConstraintViolationException dupEx) {
+            JOptionPane.showMessageDialog(null, "Error: La materia con el mismo nombre ya existe en la base de datos.");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia" + ex.getMessage());
         }
@@ -57,7 +56,7 @@ public class MateriaData {
                 materia.setActivo(rs.getBoolean("estado"));
 
             } else {
-            //    JOptionPane.showMessageDialog(null, "Materia no encontrada");
+                //    JOptionPane.showMessageDialog(null, "Materia no encontrada");
             }
 
         } catch (SQLException ex) {
@@ -65,53 +64,56 @@ public class MateriaData {
         }
         return materia;
     }
-    
-    public Materia buscarMateriaPorNombre(String nombreMateria){
-        Materia materiaBuscada=new Materia();
+
+    public Materia buscarMateriaPorNombre(String nombreMateria) {
+        Materia materiaBuscada = null;
         try {
-            String sql = "SELECT * FROM materia WHERE nombre=? AND estado=1";
-            
+            String sql = "SELECT * FROM materia WHERE nombre=?";
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, nombreMateria);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
+                materiaBuscada=new Materia();
                 materiaBuscada.setIdMateria(rs.getInt("idMateria"));
                 materiaBuscada.setNombre(rs.getString("nombre"));
                 materiaBuscada.setAnioMateria(rs.getInt("año"));
-                materiaBuscada.setActivo(rs.getBoolean("estado"));       
+                materiaBuscada.setActivo(rs.getBoolean("estado"));
             } else {
-            //    JOptionPane.showMessageDialog(null, "Materia no encontrada");
+                //    JOptionPane.showMessageDialog(null, "Materia no encontrada");
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede acceder a Materia: " + ex.getMessage());
         }
 
-     return materiaBuscada;   
-        
+        return materiaBuscada;
+
     }
-    
 
     public void modificarMateria(Materia materia) {
-        String sql = "UPDATE materia SET nombre=?, año=? WHERE idMateria=?";
+        String sql = "UPDATE materia SET nombre=?, año=?, estado=? WHERE idMateria=?";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, materia.getNombre());
             ps.setInt(2, materia.getAnioMateria());
-            ps.setInt(3, materia.getIdMateria());
+            ps.setBoolean(3, materia.isActivo());
+            ps.setInt(4, materia.getIdMateria());
             int exito = ps.executeUpdate();
-            if (exito== 1) {
+            if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Materia Actualizada.");
-            }else JOptionPane.showMessageDialog(null, "No se encontró idMateria");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró idMateria");
+            }
 
-        }catch (SQLSyntaxErrorException sx){
-            JOptionPane.showMessageDialog(null, "Error de Sintaxis: "+sx.getMessage());
+        } catch (SQLSyntaxErrorException sx) {
+            JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede acceder a Materia: " + ex.getMessage());
         }
     }
-        
-        public void eliminarMateria(int idMateria) {
+
+    public void eliminarMateria(int idMateria) {
         String sql = "UPDATE materia SET estado=0 WHERE idmateria=?";
         try {
             if (existeMateria(idMateria)) {
@@ -135,28 +137,29 @@ public class MateriaData {
         }
     }
 
-        private boolean existeMateria(int id) throws SQLException{
-            String sql="SELECT idMateria FROM materia WHERE idMateria=?";
-            PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1,id);
-            ResultSet rs=ps.executeQuery();
-            return rs.next();   
-        }
-        
-        private boolean verificarEstado(int id) throws SQLException{
-            String sql="SELECT estado FROM materia WHERE idMateria=?";
-            PreparedStatement ps=con.prepareStatement(sql);
-            ps.setInt(1,id);
-            ResultSet rs=ps.executeQuery();
-            if (rs.next()) {
-                return rs.getBoolean("estado");
-                
-            }else {
-            return false;   
-        } 
-        
+    private boolean existeMateria(int id) throws SQLException {
+        String sql = "SELECT idMateria FROM materia WHERE idMateria=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        return rs.next();
     }
-        public List<Materia> listarMaterias() {
+
+    private boolean verificarEstado(int id) throws SQLException {
+        String sql = "SELECT estado FROM materia WHERE idMateria=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        if (rs.next()) {
+            return rs.getBoolean("estado");
+
+        } else {
+            return false;
+        }
+
+    }
+
+    public List<Materia> listarMaterias() {
         List<Materia> materias = new ArrayList<>();
 
         try {
@@ -180,4 +183,3 @@ public class MateriaData {
         return materias;
     }
 }
-
