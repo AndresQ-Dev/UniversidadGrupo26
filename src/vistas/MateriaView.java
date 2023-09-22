@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author telma
  */
 public class MateriaView extends javax.swing.JInternalFrame {
-    
+
     MateriaData materiaData = new MateriaData();
     private boolean editando = false; //Flag para controlar si se está editando una materia
 
@@ -98,6 +98,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
         });
 
         bEliminar.setText("Eliminar");
+        bEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEliminarActionPerformed(evt);
+            }
+        });
 
         bGuardar.setText("Guardar");
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -200,9 +205,9 @@ public class MateriaView extends javax.swing.JInternalFrame {
         } else {
             clean();
             JOptionPane.showMessageDialog(null, "Materia no encontrada");
-            
+
         }
-        
+
 
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -220,7 +225,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 return;
             }
             Materia materiaExistente = materiaData.buscarMateria(Integer.parseInt(idMateria));
-            
+
             if (materiaExistente == null) {
                 JOptionPane.showMessageDialog(null, "No se encontró la materia");
                 return;
@@ -253,16 +258,15 @@ public class MateriaView extends javax.swing.JInternalFrame {
             materiaEditada.setActivo(estado);
             //llamo al método actualizar
             materiaData.modificarMateria(materiaEditada);
-            
+
             //limpiar
-            editando=false;
+            editando = false;
             bEditar.setText("Editar");
             clean();
             activar();
-            
-            
+
         }
-        
+
 
     }//GEN-LAST:event_bEditarActionPerformed
 
@@ -320,6 +324,27 @@ public class MateriaView extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_tfanioKeyTyped
 
+    private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
+        String idMateria = tfCodigo.getText();
+//        int codigo = JOptionPane.showConfirmDialog(null, "Seguro desea borrar la materia?", "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+//
+//        if (idMateria != null && codigo == JOptionPane.YES_OPTION) {
+//            JOptionPane.showMessageDialog(null, "Seguro desea borrar la materia?");
+//            materiaData.eliminarMateria(Integer.parseInt(idMateria));
+//        } else if (codigo == JOptionPane.NO_OPTION) {
+//            JOptionPane.showMessageDialog(null, "Cancelaste...");
+//            return;
+//        }
+
+    if (idMateria!=null) {
+            materiaData.eliminarMateria(Integer.parseInt(idMateria));
+            clean();
+            activar();
+        }else{
+            JOptionPane.showConfirmDialog(null, "No se seleccionó ninguna materia a eliminar.","Error",JOptionPane.YES_NO_OPTION);
+        }
+    }//GEN-LAST:event_bEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bBuscar;
@@ -344,18 +369,18 @@ public class MateriaView extends javax.swing.JInternalFrame {
         tfanio.setText("");
         rbEstado.setSelected(false);
     }
-    
+
     private void desactivarId() {
         tfCodigo.setEditable(false);
     }
-    
+
     private void activar() {
         tfCodigo.setEditable(true);
         tfNombre.setEditable(false);
         tfanio.setEditable(false);
         rbEstado.setEnabled(false);
     }
-    
+
     private void activarNAE() {
         tfNombre.setEditable(true);
         tfanio.setEditable(true);
