@@ -91,6 +91,11 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuAdministracion.add(jMenuItemInscripciones);
 
         jMenuItemNotas.setText("Manipulacion de Notas");
+        jMenuItemNotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemNotasActionPerformed(evt);
+            }
+        });
         jMenuAdministracion.add(jMenuItemNotas);
 
         jMenuBar1.add(jMenuAdministracion);
@@ -145,6 +150,13 @@ public class PrincipalView extends javax.swing.JFrame {
         inscripcionView.setVisible(true);
         inscripcionView.moveToFront();
     }//GEN-LAST:event_jMenuItemInscripcionesActionPerformed
+
+    private void jMenuItemNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNotasActionPerformed
+        NotaView notaView=new NotaView();
+        jDesktopPane1.add(notaView);
+        notaView.setVisible(true);
+        notaView.moveToFront();
+    }//GEN-LAST:event_jMenuItemNotasActionPerformed
 
     /**
      * @param args the command line arguments

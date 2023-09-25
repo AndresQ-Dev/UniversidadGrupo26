@@ -3,8 +3,8 @@ package entidades;
 
 import java.time.LocalDate;
 
-public class Alumno {
- 
+public class Alumno implements Comparable<Alumno>{
+  
   private int idAlumno;  
   private int dni;
   private String apellido;  
@@ -83,6 +83,16 @@ public class Alumno {
     @Override
     public String toString() {
         return dni+" || "+apellido+", "+nombre;
+    }
+
+    @Override
+    public int compareTo(Alumno o) {
+        int resultadoApellido=this.apellido.compareToIgnoreCase(o.getApellido());
+        if(resultadoApellido==0){
+            return this.nombre.compareToIgnoreCase(o.getNombre());   
+        }else{
+            return resultadoApellido;
+        }
     }
 
    
