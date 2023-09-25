@@ -27,30 +27,29 @@ public class InscripcionData {
 
     //TODO agregar método verificarEstado
     public void guardarInscripcion(Inscripcion inscripcion) {
-            //if (!verificarInscripcionDuplicada(inscripcion)) {
+        //if (!verificarInscripcionDuplicada(inscripcion)) {
+        //try {
+        String sql = "INSERT INTO inscripcion (idAlumno, idMateria, nota)VALUES (?,?,?)";
         try {
-            String sql = "INSERT INTO inscripcion (idAlumno, idMateria, nota)VALUES (?,?,?)";
-            try {
-                PreparedStatement ps = con.prepareStatement(sql);
-                ps.setInt(1, inscripcion.getAlumno().getIdAlumno());
-                ps.setInt(2, inscripcion.getMateria().getIdMateria());
-                ps.setDouble(3, inscripcion.getNota());
-                int inscrip = ps.executeUpdate();
-                if (inscrip > 0) {
-                    JOptionPane.showMessageDialog(null, "Inscripción realizada");
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo realizar la inscripción");
-                }
-            
-            } catch (SQLSyntaxErrorException sx) {
-                JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
-            } catch (SQLException ex) {
-                Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
-            }finally{
-                Conexion.cerrarConexion();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, inscripcion.getAlumno().getIdAlumno());
+            ps.setInt(2, inscripcion.getMateria().getIdMateria());
+            ps.setDouble(3, inscripcion.getNota());
+            int inscrip = ps.executeUpdate();
+            if (inscrip > 0) {
+                JOptionPane.showMessageDialog(null, "Inscripción realizada");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo realizar la inscripción");
             }
+
+        } catch (SQLSyntaxErrorException sx) {
+            JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+           // Conexion.cerrarConexion();
         }
-    
+
     }
 
     private boolean verificarInscripcionDuplicada(Inscripcion inscripcion) throws SQLException {

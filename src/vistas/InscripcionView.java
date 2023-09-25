@@ -89,6 +89,11 @@ public class InscripcionView extends javax.swing.JInternalFrame {
 
         btAnularInscrip.setText("Anular Inscripciones");
         btAnularInscrip.setEnabled(false);
+        btAnularInscrip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAnularInscripActionPerformed(evt);
+            }
+        });
 
         btSalir.setText("Salir");
         btSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +186,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     private void cbListadodeAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbListadodeAlumnosActionPerformed
         limpiarTabla();
         resetearRb();
+        btInscrip.setEnabled(false);
     }//GEN-LAST:event_cbListadodeAlumnosActionPerformed
 
     private void rbMatInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMatInscripActionPerformed
@@ -226,6 +232,19 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         resetearRb();
 
     }//GEN-LAST:event_btInscripActionPerformed
+
+    private void btAnularInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnularInscripActionPerformed
+        Alumno alumnoSeleccionado = (Alumno) cbListadodeAlumnos.getSelectedItem();
+        int indiceFila = tbMaterias.getSelectedRow();
+        if (indiceFila != -1) {
+            int idMateria = (int) tbMaterias.getValueAt(indiceFila, 0);
+            inscripcionData.borrarInscripcionMateriaAlumno(alumnoSeleccionado.getIdAlumno(), idMateria);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe escoger una materia en la lista.");
+        }
+        limpiarTabla();
+        resetearRb();
+    }//GEN-LAST:event_btAnularInscripActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
