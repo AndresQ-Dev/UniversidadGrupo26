@@ -2,10 +2,13 @@ package vistas;
 
 import accesoADatos.AlumnoData;
 import accesoADatos.InscripcionData;
+import accesoADatos.MateriaData;
 import entidades.Alumno;
+import entidades.Inscripcion;
 import entidades.Materia;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class InscripcionView extends javax.swing.JInternalFrame {
@@ -14,6 +17,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     private InscripcionData inscripcionData = new InscripcionData();
     private DefaultTableModel modelo = new DefaultTableModel();
     private Boolean materiasInscriptasSeleccionadas = false;
+    private MateriaData materiaData = new MateriaData();
 
     public InscripcionView() {
         initComponents();
@@ -76,8 +80,15 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         });
 
         btInscrip.setText("Inscribir");
+        btInscrip.setEnabled(false);
+        btInscrip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btInscripActionPerformed(evt);
+            }
+        });
 
         btAnularInscrip.setText("Anular Inscripciones");
+        btAnularInscrip.setEnabled(false);
 
         btSalir.setText("Salir");
         btSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +188,8 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         materiasInscriptasSeleccionadas = true;
         rbMatnoInscrip.setSelected(false);
         cargarMateriasInscriptas();
+        btInscrip.setEnabled(false);
+        btAnularInscrip.setEnabled(true);
     }//GEN-LAST:event_rbMatInscripActionPerformed
 
     private void rbMatnoInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbMatnoInscripActionPerformed
@@ -184,6 +197,9 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         materiasInscriptasSeleccionadas = false;
         rbMatInscrip.setSelected(false);
         cargarMateriasNoInscriptas();
+        btInscrip.setEnabled(true);
+        btAnularInscrip.setEnabled(false);
+
     }//GEN-LAST:event_rbMatnoInscripActionPerformed
 
     private void cbListadodeAlumnosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_cbListadodeAlumnosPropertyChange
@@ -193,6 +209,23 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     private void btSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalirActionPerformed
         dispose();
     }//GEN-LAST:event_btSalirActionPerformed
+
+    private void btInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscripActionPerformed
+
+        Alumno alumnoSeleccionado = (Alumno) cbListadodeAlumnos.getSelectedItem();
+        int indiceFila = tbMaterias.getSelectedRow();
+        if (indiceFila != -1) {
+            int idMateria = (int) tbMaterias.getValueAt(indiceFila, 0);
+            Materia materiaSeleccionada = materiaData.buscarMateria(idMateria);
+            Inscripcion inscripcion = new Inscripcion(alumnoSeleccionado, materiaSeleccionada);
+            inscripcionData.guardarInscripcion(inscripcion);
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe escoger una materia en la lista.");
+        }
+        limpiarTabla();
+        resetearRb();
+
+    }//GEN-LAST:event_btInscripActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -257,7 +290,6 @@ public class InscripcionView extends javax.swing.JInternalFrame {
 //            modelo.removeRow(i);
 //        }
 //    }
-
     private void limpiarTabla() {
         modelo.setRowCount(0);
     }

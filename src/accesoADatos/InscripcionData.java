@@ -27,32 +27,30 @@ public class InscripcionData {
 
     //TODO agregar método verificarEstado
     public void guardarInscripcion(Inscripcion inscripcion) {
+            //if (!verificarInscripcionDuplicada(inscripcion)) {
         try {
-            if (!verificarInscripcionDuplicada(inscripcion)) {
-                String sql = "INSERT INTO inscripcion (idAlumno, idMateria, nota)VALUES (?,?,?)";
-                try {
-                    PreparedStatement ps = con.prepareStatement(sql);
-                    ps.setInt(1, inscripcion.getAlumno().getIdAlumno());
-                    ps.setInt(2, inscripcion.getMateria().getIdMateria());
-                    ps.setDouble(3, inscripcion.getNota());
-                    int inscrip = ps.executeUpdate();
-                    if (inscrip > 0) {
-                        JOptionPane.showMessageDialog(null, "Inscripción realizada");
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se pudo realizar la inscripción");
-                    }
-
-                } catch (SQLSyntaxErrorException sx) {
-                    JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
-                } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "No se puede acceder a la Inscripción" + ex.getMessage());
+            String sql = "INSERT INTO inscripcion (idAlumno, idMateria, nota)VALUES (?,?,?)";
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, inscripcion.getAlumno().getIdAlumno());
+                ps.setInt(2, inscripcion.getMateria().getIdMateria());
+                ps.setDouble(3, inscripcion.getNota());
+                int inscrip = ps.executeUpdate();
+                if (inscrip > 0) {
+                    JOptionPane.showMessageDialog(null, "Inscripción realizada");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se pudo realizar la inscripción");
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Inscripción Duplicada");
+            
+            } catch (SQLSyntaxErrorException sx) {
+                JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
+            } catch (SQLException ex) {
+                Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
+            }finally{
+                Conexion.cerrarConexion();
             }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al comparar alumnos en inscripción");
         }
+    
     }
 
     private boolean verificarInscripcionDuplicada(Inscripcion inscripcion) throws SQLException {
@@ -95,12 +93,13 @@ public class InscripcionData {
         }
         return inscripciones;
     }
+
     public List<Inscripcion> obtenerInscripcionesPorAlumno(int id) {
         List<Inscripcion> inscripciones = new ArrayList<>();
         try {
             String sql = "SELECT * FROM inscripcion WHERE idAlumno=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             AlumnoData alumnoData = new AlumnoData();
             MateriaData materiaData = new MateriaData();
@@ -121,95 +120,94 @@ public class InscripcionData {
         }
         return inscripciones;
     }
-    
-   public List<Materia> obtenerMateriasCursadas(int id) {
+
+    public List<Materia> obtenerMateriasCursadas(int id) {
         List<Materia> listaCursadas = new ArrayList<>();
         try {
             String sql = "SELECT inscripcion.idMateria,nombre,año FROM inscripcion "
                     + "JOIN materia ON(inscripcion.idMateria=materia.idMateria)"
                     + "WHERE inscripcion.idAlumno=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-              Materia materia=new Materia();
-              materia.setIdMateria(rs.getInt("idMateria"));
-              materia.setNombre(rs.getString("nombre"));
-              materia.setAnioMateria(rs.getInt("año"));
-              listaCursadas.add(materia);
+                Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                listaCursadas.add(materia);
             }
         } catch (SQLSyntaxErrorException sx) {
             JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la inscripción: " + ex.getMessage());
         }
-        return listaCursadas; 
-   } 
+        return listaCursadas;
+    }
 
- public List<Materia> obtenerMateriasNoCursadas(int id) {
+    public List<Materia> obtenerMateriasNoCursadas(int id) {
         List<Materia> listaNoCursadas = new ArrayList<>();
         try {
             String sql = "SELECT * FROM materia WHERE estado=1 && idMateria NOT IN "
                     + "(SELECT idMateria FROM inscripcion WHERE idAlumno=?)";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1,id);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-              Materia materia=new Materia();
-              materia.setIdMateria(rs.getInt("idMateria"));
-              materia.setNombre(rs.getString("nombre"));
-              materia.setAnioMateria(rs.getInt("año"));
-              listaNoCursadas.add(materia);
+                Materia materia = new Materia();
+                materia.setIdMateria(rs.getInt("idMateria"));
+                materia.setNombre(rs.getString("nombre"));
+                materia.setAnioMateria(rs.getInt("año"));
+                listaNoCursadas.add(materia);
             }
         } catch (SQLSyntaxErrorException sx) {
             JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la inscripción: " + ex.getMessage());
         }
-        return listaNoCursadas; 
-    
-    
-   }
+        return listaNoCursadas;
+
+    }
+
     public void borrarInscripcionMateriaAlumno(int idAlumno, int idMateria) {
         try {
             String sql = "DELETE FROM inscripcion WHERE idAlumno=? AND idMateria=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlumno);
             ps.setInt(2, idMateria);
-            int exito=ps.executeUpdate();
-            if(exito>0){
+            int exito = ps.executeUpdate();
+            if (exito > 0) {
                 JOptionPane.showMessageDialog(null, "Inscripcion Borrada");
             }
-            
-            } catch (SQLSyntaxErrorException sx) {
+
+        } catch (SQLSyntaxErrorException sx) {
             JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la inscripción: " + ex.getMessage());
         }
 
- }
-   
-    
-    public void actualizarNota(int idAlumno, int idMateria, double nota){
+    }
+
+    public void actualizarNota(int idAlumno, int idMateria, double nota) {
         try {
-            String sql="UPDATE inscripcion SET nota=? WHERE idAlumno=? AND idMateria=?";
+            String sql = "UPDATE inscripcion SET nota=? WHERE idAlumno=? AND idMateria=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setDouble(1,nota);
-            ps.setInt(2, idAlumno);  
+            ps.setDouble(1, nota);
+            ps.setInt(2, idAlumno);
             ps.setInt(3, idMateria);
-           
-            int exito=ps.executeUpdate();
-            if (exito>0){
+
+            int exito = ps.executeUpdate();
+            if (exito > 0) {
                 JOptionPane.showMessageDialog(null, "Nota actualizada");
             }
-        }catch (SQLSyntaxErrorException sx) {
+        } catch (SQLSyntaxErrorException sx) {
             JOptionPane.showMessageDialog(null, "Error de Sintaxis: " + sx.getMessage());
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la inscripción: " + ex.getMessage());
-         
+
         }
     }
-    
+
     public List<Alumno> obtenerAlumnoPorMateria(int idMateria) {
         List<Alumno> alumnoPorMateria = new ArrayList<>();
         try {
@@ -217,7 +215,7 @@ public class InscripcionData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idMateria);
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 Alumno alumno = new Alumno();
                 alumno.setIdAlumno(rs.getInt("idAlumno"));
