@@ -4,11 +4,23 @@
  */
 package vistas;
 
+import accesoADatos.InscripcionData;
+import accesoADatos.MateriaData;
+import entidades.Alumno;
+import entidades.Materia;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author andres
  */
 public class AlumnoPorMateria extends javax.swing.JInternalFrame {
+
+    MateriaData materiaData = new MateriaData();
+    DefaultTableModel modelo = new DefaultTableModel();
+    InscripcionData inscripcionData = new InscripcionData();
 
     /**
      * Creates new form AlumnoPorMateria
@@ -16,6 +28,8 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
     public AlumnoPorMateria() {
         initComponents();
         setSize(586, 524);
+        cargarCombo();
+        armarCabecera();
     }
 
     /**
@@ -31,10 +45,10 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        cBlistadoMaterias = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
+        tBListaalumnos = new javax.swing.JTable();
+        bSalir = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -42,19 +56,23 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Listado de Alumnos por Materia");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(190, 10, 220, 19);
+        jLabel1.setBounds(190, 10, 220, 16);
         jPanel1.add(jSeparator1);
         jSeparator1.setBounds(40, 40, 500, 10);
 
         jLabel2.setText("Seleccione una Materia: ");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(80, 90, 190, 19);
+        jLabel2.setBounds(80, 90, 190, 16);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(280, 90, 260, 25);
+        cBlistadoMaterias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBlistadoMateriasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cBlistadoMaterias);
+        cBlistadoMaterias.setBounds(280, 90, 260, 26);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tBListaalumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -65,14 +83,19 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tBListaalumnos);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(40, 150, 500, 260);
 
-        jButton2.setText("Salir");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(460, 440, 72, 25);
+        bSalir.setText("Salir");
+        bSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bSalirActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bSalir);
+        bSalir.setBounds(460, 440, 53, 28);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,15 +111,48 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cBlistadoMateriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBlistadoMateriasActionPerformed
+        Materia materia = (Materia) cBlistadoMaterias.getSelectedItem();
+        List<Alumno> listaAlumno = new ArrayList<>();
+        listaAlumno = inscripcionData.obtenerAlumnoPorMateria(materia.getIdMateria());
+        modelo.setRowCount(0);
+        for (Alumno alumno : listaAlumno) {
+            modelo.addRow(new Object[]{alumno.getIdAlumno(), alumno.getDni(), alumno.getApellido(), alumno.getNombre()});
+            
+        }
+
+    }//GEN-LAST:event_cBlistadoMateriasActionPerformed
+
+    private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_bSalirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton bSalir;
+    private javax.swing.JComboBox<Materia> cBlistadoMaterias;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tBListaalumnos;
     // End of variables declaration//GEN-END:variables
+private void cargarCombo() {
+        List<Materia> listaMaterias = new ArrayList<>();
+        listaMaterias = materiaData.listarMaterias();
+        if (listaMaterias != null) {
+            for (Materia materia : listaMaterias) {
+                cBlistadoMaterias.addItem(materia);                
+            }
+        }
+    }
+
+    private void armarCabecera() {
+        modelo.addColumn("ID");
+        modelo.addColumn("DNI");
+        modelo.addColumn("Apellido");
+        modelo.addColumn("Nombre");
+        tBListaalumnos.setModel(modelo);
+    }
 }
