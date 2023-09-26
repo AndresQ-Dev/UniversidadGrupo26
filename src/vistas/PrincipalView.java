@@ -26,6 +26,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuAlumno = new javax.swing.JMenu();
         jMenuItemAlumno = new javax.swing.JMenuItem();
@@ -39,20 +40,33 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jDesktopPane1.setPreferredSize(new java.awt.Dimension(1024, 769));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/navy.png"))); // NOI18N
+        jLabel1.setPreferredSize(new java.awt.Dimension(1024, 769));
+
+        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 990, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 674, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 770, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        jMenuAlumno.setText("Alumno");
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setOpaque(false);
 
+        jMenuAlumno.setText("Alumno");
+        jMenuAlumno.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+
+        jMenuItemAlumno.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuItemAlumno.setText("Formulario de Alumno");
         jMenuItemAlumno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,12 +78,14 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenuAlumno);
 
         jMenuMateria.setText("Materia");
+        jMenuMateria.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuMateriaActionPerformed(evt);
             }
         });
 
+        jMenuFormularioMateria.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuFormularioMateria.setText("Formulario de Materia");
         jMenuFormularioMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +97,9 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenuMateria);
 
         jMenuAdministracion.setText("Administracion");
+        jMenuAdministracion.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
 
+        jMenuItemInscripciones.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuItemInscripciones.setText("Manejo de Inscripciones");
         jMenuItemInscripciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,6 +108,7 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenuAdministracion.add(jMenuItemInscripciones);
 
+        jMenuItemNotas.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuItemNotas.setText("Manipulacion de Notas");
         jMenuItemNotas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -101,13 +120,21 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuBar1.add(jMenuAdministracion);
 
         jMenuConsultas.setText("Consultas");
+        jMenuConsultas.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
 
+        jMenuItemAlumXMateria.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuItemAlumXMateria.setText("Alumnos por Materia");
+        jMenuItemAlumXMateria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAlumXMateriaActionPerformed(evt);
+            }
+        });
         jMenuConsultas.add(jMenuItemAlumXMateria);
 
         jMenuBar1.add(jMenuConsultas);
 
         jMenuSalir.setText("Salir");
+        jMenuSalir.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
@@ -116,11 +143,13 @@ public class PrincipalView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 988, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -129,6 +158,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItemAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlumnoActionPerformed
     AlumnoView alumnoView=new AlumnoView();
     jDesktopPane1.add(alumnoView);
+    alumnoView.centrarEnDesktopPane();
     alumnoView.setVisible(true);
     alumnoView.moveToFront();        
     }//GEN-LAST:event_jMenuItemAlumnoActionPerformed
@@ -157,6 +187,13 @@ public class PrincipalView extends javax.swing.JFrame {
         notaView.setVisible(true);
         notaView.moveToFront();
     }//GEN-LAST:event_jMenuItemNotasActionPerformed
+
+    private void jMenuItemAlumXMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlumXMateriaActionPerformed
+       AlumnoPorMateria alumnoPorMateria=new AlumnoPorMateria();
+       jDesktopPane1.add(alumnoPorMateria);
+       alumnoPorMateria.setVisible(true);
+       alumnoPorMateria.moveToFront();
+    }//GEN-LAST:event_jMenuItemAlumXMateriaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -195,6 +232,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenuAdministracion;
     private javax.swing.JMenu jMenuAlumno;
     private javax.swing.JMenuBar jMenuBar1;

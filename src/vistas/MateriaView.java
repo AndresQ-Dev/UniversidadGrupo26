@@ -21,6 +21,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
      */
     public MateriaView() {
         initComponents();
+        setSize(586, 524);
     }
 
     /**
@@ -32,39 +33,73 @@ public class MateriaView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        tfCodigo = new javax.swing.JTextField();
-        tfNombre = new javax.swing.JTextField();
-        tfanio = new javax.swing.JTextField();
-        lCodigo = new javax.swing.JLabel();
-        lAño = new javax.swing.JLabel();
-        lNombre = new javax.swing.JLabel();
-        lEstado = new javax.swing.JLabel();
-        rbEstado = new javax.swing.JRadioButton();
-        bBuscar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         bNuevo = new javax.swing.JButton();
         bEliminar = new javax.swing.JButton();
         bGuardar = new javax.swing.JButton();
         bEditar = new javax.swing.JButton();
+        lEstado = new javax.swing.JLabel();
+        rbEstado = new javax.swing.JRadioButton();
+        lAño = new javax.swing.JLabel();
+        tfanio = new javax.swing.JTextField();
+        lNombre = new javax.swing.JLabel();
+        tfNombre = new javax.swing.JTextField();
+        bBuscar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        tfCodigo = new javax.swing.JTextField();
+        lCodigo = new javax.swing.JLabel();
 
         setClosable(true);
 
-        jLabel1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("         Materia");
+        jPanel1.setLayout(null);
 
-        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfCodigoKeyTyped(evt);
+        bNuevo.setText("Nuevo");
+        bNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bNuevoActionPerformed(evt);
             }
         });
+        jPanel1.add(bNuevo);
+        bNuevo.setBounds(30, 390, 87, 25);
 
-        tfNombre.setEditable(false);
-        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                tfNombreKeyTyped(evt);
+        bEliminar.setText("Eliminar");
+        bEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEliminarActionPerformed(evt);
             }
         });
+        jPanel1.add(bEliminar);
+        bEliminar.setBounds(140, 390, 86, 25);
+
+        bGuardar.setText("Guardar");
+        bGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bGuardarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bGuardar);
+        bGuardar.setBounds(240, 390, 84, 25);
+
+        bEditar.setText("Editar");
+        bEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEditarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bEditar);
+        bEditar.setBounds(350, 390, 160, 25);
+
+        lEstado.setText("Estado");
+        jPanel1.add(lEstado);
+        lEstado.setBounds(30, 300, 61, 28);
+
+        rbEstado.setEnabled(false);
+        jPanel1.add(rbEstado);
+        rbEstado.setBounds(110, 310, 38, 19);
+
+        lAño.setText("Año");
+        jPanel1.add(lAño);
+        lAño.setBounds(40, 230, 61, 41);
 
         tfanio.setEditable(false);
         tfanio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -72,16 +107,21 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 tfanioKeyTyped(evt);
             }
         });
-
-        lCodigo.setText("Código");
-
-        lAño.setText("Año");
+        jPanel1.add(tfanio);
+        tfanio.setBounds(110, 230, 98, 33);
 
         lNombre.setText("Nombre");
+        jPanel1.add(lNombre);
+        lNombre.setBounds(30, 160, 61, 41);
 
-        lEstado.setText("Estado");
-
-        rbEstado.setEnabled(false);
+        tfNombre.setEditable(false);
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombreKeyTyped(evt);
+            }
+        });
+        jPanel1.add(tfNombre);
+        tfNombre.setBounds(110, 160, 216, 33);
 
         bBuscar.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
         bBuscar.setText("Buscar");
@@ -90,100 +130,36 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 bBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(bBuscar);
+        bBuscar.setBounds(340, 80, 178, 25);
 
-        bNuevo.setText("Nuevo");
-        bNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bNuevoActionPerformed(evt);
+        jLabel1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Materia");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(0, 20, 570, 28);
+
+        tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfCodigoKeyTyped(evt);
             }
         });
+        jPanel1.add(tfCodigo);
+        tfCodigo.setBounds(120, 80, 101, 33);
 
-        bEliminar.setText("Eliminar");
-        bEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEliminarActionPerformed(evt);
-            }
-        });
-
-        bGuardar.setText("Guardar");
-        bGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bGuardarActionPerformed(evt);
-            }
-        });
-
-        bEditar.setText("Editar");
-        bEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bEditarActionPerformed(evt);
-            }
-        });
+        lCodigo.setText("Código");
+        jPanel1.add(lCodigo);
+        lCodigo.setBounds(40, 80, 61, 41);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(lEstado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lAño, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lNombre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
-                                .addComponent(lCodigo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(bNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tfanio, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(rbEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(47, 47, 47)
-                                .addComponent(bBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(bEliminar)
-                                .addGap(18, 18, 18)
-                                .addComponent(bGuardar)
-                                .addGap(20, 20, 20)
-                                .addComponent(bEditar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(0, 16, Short.MAX_VALUE)))
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bBuscar))
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tfanio, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lAño, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(rbEstado)
-                    .addComponent(lEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bEliminar)
-                    .addComponent(bGuardar)
-                    .addComponent(bEditar)
-                    .addComponent(bNuevo))
-                .addContainerGap(50, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
 
         pack();
@@ -357,6 +333,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton bGuardar;
     private javax.swing.JButton bNuevo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lAño;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lEstado;

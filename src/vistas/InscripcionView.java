@@ -21,6 +21,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
 
     public InscripcionView() {
         initComponents();
+        setSize(586, 524);
         cargarCombo();
         armarCabecera();
     }
@@ -29,55 +30,26 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        cbListadodeAlumnos = new javax.swing.JComboBox<>();
-        jLabel3 = new javax.swing.JLabel();
-        rbMatInscrip = new javax.swing.JRadioButton();
-        rbMatnoInscrip = new javax.swing.JRadioButton();
+        jPanel1 = new javax.swing.JPanel();
         btInscrip = new javax.swing.JButton();
         btAnularInscrip = new javax.swing.JButton();
         btSalir = new javax.swing.JButton();
-        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbMaterias = new javax.swing.JTable();
+        rbMatInscrip = new javax.swing.JRadioButton();
+        rbMatnoInscrip = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cbListadodeAlumnos = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setClosable(true);
+        setPreferredSize(new java.awt.Dimension(586, 524));
 
-        jLabel1.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("    Formulario de Inscripción");
-
-        jLabel2.setText("Seleccione un Alumno :");
-
-        cbListadodeAlumnos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbListadodeAlumnosActionPerformed(evt);
-            }
-        });
-        cbListadodeAlumnos.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                cbListadodeAlumnosPropertyChange(evt);
-            }
-        });
-
-        jLabel3.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
-        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Listado de Materias");
-
-        rbMatInscrip.setText("Materias Inscriptas");
-        rbMatInscrip.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbMatInscripActionPerformed(evt);
-            }
-        });
-
-        rbMatnoInscrip.setText("Materias no Inscriptas");
-        rbMatnoInscrip.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbMatnoInscripActionPerformed(evt);
-            }
-        });
+        jPanel1.setBackground(new java.awt.Color(39, 60, 117));
+        jPanel1.setPreferredSize(new java.awt.Dimension(586, 524));
+        jPanel1.setLayout(null);
 
         btInscrip.setText("Inscribir");
         btInscrip.setEnabled(false);
@@ -86,6 +58,8 @@ public class InscripcionView extends javax.swing.JInternalFrame {
                 btInscripActionPerformed(evt);
             }
         });
+        jPanel1.add(btInscrip);
+        btInscrip.setBounds(30, 450, 84, 25);
 
         btAnularInscrip.setText("Anular Inscripciones");
         btAnularInscrip.setEnabled(false);
@@ -94,6 +68,8 @@ public class InscripcionView extends javax.swing.JInternalFrame {
                 btAnularInscripActionPerformed(evt);
             }
         });
+        jPanel1.add(btAnularInscrip);
+        btAnularInscrip.setBounds(190, 450, 161, 25);
 
         btSalir.setText("Salir");
         btSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +77,8 @@ public class InscripcionView extends javax.swing.JInternalFrame {
                 btSalirActionPerformed(evt);
             }
         });
+        jPanel1.add(btSalir);
+        btSalir.setBounds(430, 450, 72, 25);
 
         tbMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -115,69 +93,69 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(tbMaterias);
 
+        jPanel1.add(jScrollPane2);
+        jScrollPane2.setBounds(29, 210, 479, 213);
+
+        rbMatInscrip.setText("Materias Inscriptas");
+        rbMatInscrip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbMatInscripActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbMatInscrip);
+        rbMatInscrip.setBounds(31, 181, 149, 23);
+
+        rbMatnoInscrip.setText("Materias no Inscriptas");
+        rbMatnoInscrip.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbMatnoInscripActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rbMatnoInscrip);
+        rbMatnoInscrip.setBounds(299, 181, 168, 23);
+
+        jLabel3.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Listado de Materias");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(0, 119, 479, 22);
+
+        jLabel2.setText("Seleccione un Alumno :");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(29, 67, 149, 19);
+
+        cbListadodeAlumnos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbListadodeAlumnosActionPerformed(evt);
+            }
+        });
+        cbListadodeAlumnos.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                cbListadodeAlumnosPropertyChange(evt);
+            }
+        });
+        jPanel1.add(cbListadodeAlumnos);
+        cbListadodeAlumnos.setBounds(212, 64, 275, 25);
+
+        jLabel1.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("    Formulario de Inscripción");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(42, 6, 490, 22);
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(42, 40, 508, 10);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(rbMatInscrip)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(rbMatnoInscrip)))
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btSalir))
-                            .addComponent(jLabel2))
-                        .addContainerGap(25, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btInscrip)
-                                .addGap(75, 75, 75)
-                                .addComponent(btAnularInscrip, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(204, 204, 204)
-                                .addComponent(cbListadodeAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbListadodeAlumnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(42, 42, 42)
-                .addComponent(jLabel3)
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbMatInscrip)
-                    .addComponent(rbMatnoInscrip))
-                .addGap(30, 30, 30)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btInscrip)
-                    .addComponent(btAnularInscrip)
-                    .addComponent(btSalir))
-                .addGap(15, 15, 15))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -255,6 +233,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JRadioButton rbMatInscrip;
