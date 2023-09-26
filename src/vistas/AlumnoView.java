@@ -76,6 +76,7 @@ public class AlumnoView extends javax.swing.JInternalFrame {
         bGuardar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         bGuardar.setForeground(new java.awt.Color(255, 255, 255));
         bGuardar.setText("Guardar");
+        bGuardar.setEnabled(false);
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bGuardarActionPerformed(evt);
@@ -86,6 +87,7 @@ public class AlumnoView extends javax.swing.JInternalFrame {
         bEliminar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         bEliminar.setForeground(new java.awt.Color(255, 255, 255));
         bEliminar.setText("Eliminar");
+        bEliminar.setEnabled(false);
         bEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bEliminarActionPerformed(evt);
@@ -253,6 +255,7 @@ public class AlumnoView extends javax.swing.JInternalFrame {
 
     private void bNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoActionPerformed
         clean();
+        bGuardar.setEnabled(true);
     }//GEN-LAST:event_bNuevoActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
