@@ -65,6 +65,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuAlumno.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jMenuAlumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/alumno 1.png"))); // NOI18N
+        jMenuAlumno.setText("Alumno");
         jMenuAlumno.setContentAreaFilled(false);
         jMenuAlumno.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
 
