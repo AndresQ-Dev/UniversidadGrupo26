@@ -20,9 +20,7 @@ public class AlumnoView extends javax.swing.JInternalFrame {
 
     AlumnoData alumnoData = new AlumnoData();
 
-    /**
-     * Creates new form AlumnoView
-     */
+  
     public AlumnoView() {
         initComponents();
         setSize(586, 524);
@@ -259,25 +257,28 @@ public class AlumnoView extends javax.swing.JInternalFrame {
 
     private void bBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bBuscarActionPerformed
         String dni = tfDocumento.getText();
-        Alumno encontrado = alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
-        if (encontrado != null) {
-            tfApellido.setText(encontrado.getApellido());
-            tfNombre.setText(encontrado.getNombre());
-            rbEstado.setSelected(encontrado.isActivo());
-            jcFechaNacimiento.setDate(Date.valueOf(encontrado.getFechaNac()));
-            activarCampos();
-
-        } else {
-            clean();
-            JOptionPane.showMessageDialog(null, "Alumno no encontrado");
+        try {
+            Alumno encontrado = alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
+            if (encontrado != null) {
+                tfApellido.setText(encontrado.getApellido());
+                tfNombre.setText(encontrado.getNombre());
+                rbEstado.setSelected(encontrado.isActivo());
+                jcFechaNacimiento.setDate(Date.valueOf(encontrado.getFechaNac()));
+                activarCampos();
+                activarBotones();
+            } else {
+                clean();
+                JOptionPane.showMessageDialog(null, "Alumno no encontrado");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar un DNI. \n" + e.getMessage());
         }
-        activarBotones();
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void bNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoActionPerformed
         clean();
-        bGuardar.setEnabled(true);
         activarCampos();
+        bGuardar.setEnabled(true);
     }//GEN-LAST:event_bNuevoActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
@@ -292,37 +293,36 @@ public class AlumnoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bEliminarActionPerformed
 
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
-        try{
-        String dni = tfDocumento.getText();
-        if (dni.isEmpty() || tfApellido.getText().isEmpty() || tfNombre.getText().isEmpty() || jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()==null) {
-            JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
-            return;
-        }  
-        
-        Alumno alumnoEncontrado = alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
-        if (alumnoEncontrado == null) {
-            Alumno newAlumno = new Alumno();
-            newAlumno.setDni(Integer.parseInt(dni));
-            newAlumno.setApellido(tfApellido.getText());
-            newAlumno.setNombre(tfNombre.getText());
-            newAlumno.setActivo(rbEstado.isSelected());
-            newAlumno.setFechaNac(jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            alumnoData.guardarAlumno(newAlumno);
-            clean();
-        } else {
-            alumnoEncontrado.setApellido(tfApellido.getText());
-            alumnoEncontrado.setNombre(tfNombre.getText());
-            alumnoEncontrado.setFechaNac(jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            alumnoData.modificarAlumno(alumnoEncontrado);
-        }
-        }catch(NullPointerException exception){
-            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha válida "+exception.getMessage());
+        try {
+            String dni = tfDocumento.getText();
+            if (dni.isEmpty() || tfApellido.getText().isEmpty() || tfNombre.getText().isEmpty() || jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate() == null) {
+                JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
+                return;
+            }
+
+            Alumno alumnoEncontrado = alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
+            if (alumnoEncontrado == null) {
+                Alumno newAlumno = new Alumno();
+                newAlumno.setDni(Integer.parseInt(dni));
+                newAlumno.setApellido(tfApellido.getText());
+                newAlumno.setNombre(tfNombre.getText());
+                newAlumno.setActivo(rbEstado.isSelected());
+                newAlumno.setFechaNac(jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                alumnoData.guardarAlumno(newAlumno);
+                clean();
+            } else {
+                alumnoEncontrado.setApellido(tfApellido.getText());
+                alumnoEncontrado.setNombre(tfNombre.getText());
+                alumnoEncontrado.setFechaNac(jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+                alumnoData.modificarAlumno(alumnoEncontrado);
+            }
+        } catch (NullPointerException exception) {
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha válida " + exception.getMessage());
             return;
         }
         clean();
         desactivarBotones();
         desactivarCampos();
-        
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
@@ -330,15 +330,15 @@ public class AlumnoView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bSalirActionPerformed
 
     private void tfDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDocumentoKeyTyped
-    AccesoService.Service.esNumero(evt);
+        AccesoService.Service.esNumero(evt);
     }//GEN-LAST:event_tfDocumentoKeyTyped
 
     private void tfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoKeyTyped
-    AccesoService.Service.esLetra(evt);
+        AccesoService.Service.esLetra(evt);
     }//GEN-LAST:event_tfApellidoKeyTyped
 
     private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
-         AccesoService.Service.esLetra(evt);
+        AccesoService.Service.esLetra(evt);
     }//GEN-LAST:event_tfNombreKeyTyped
 
 

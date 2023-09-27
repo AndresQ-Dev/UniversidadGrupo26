@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package vistas;
 
 import accesoADatos.AlumnoData;
@@ -10,6 +7,7 @@ import accesoADatos.MateriaData;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -18,16 +16,16 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.sql.SQLException;
 
-
 /**
  *
  * @author telma
  */
 public class NotaView extends javax.swing.JInternalFrame {
-AlumnoData alumnoData=new AlumnoData();
-DefaultTableModel modelo=new DefaultTableModel();
-InscripcionData inscripcionData=new InscripcionData();
-MateriaData materiaData=new MateriaData(); 
+
+    AlumnoData alumnoData = new AlumnoData();
+    DefaultTableModel modelo = new DefaultTableModel();
+    InscripcionData inscripcionData = new InscripcionData();
+    MateriaData materiaData = new MateriaData();
 
     public NotaView() {
         initComponents();
@@ -139,7 +137,7 @@ MateriaData materiaData=new MateriaData();
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbListadoAlumnosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbListadoAlumnosActionPerformed
-      cargarInscripcion();  
+        cargarInscripcion();
     }//GEN-LAST:event_cbListadoAlumnosActionPerformed
 
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
@@ -187,10 +185,10 @@ MateriaData materiaData=new MateriaData();
 
     private void cargarCombo() {
         List<Alumno> listaAlumnos = new ArrayList<>();
-        listaAlumnos=alumnoData.listarAlumnos();
+        listaAlumnos = alumnoData.listarAlumnos();
         Collections.sort(listaAlumnos);
-        if(listaAlumnos!=null){
-        for (Alumno alumno : listaAlumnos) {
+        if (listaAlumnos != null) {
+            for (Alumno alumno : listaAlumnos) {
                 cbListadoAlumnos.addItem(alumno);
             }
         } else {
@@ -203,27 +201,32 @@ MateriaData materiaData=new MateriaData();
         modelo.addColumn("nombre");
         modelo.addColumn("nota");
         tbNotas.setModel(modelo);
-        
+
     }
 
     private void cargarInscripcion() {
         limpiarTabla();
-        Alumno alumno=(Alumno) cbListadoAlumnos.getSelectedItem();
-        if(alumno!=null){
-            List<Inscripcion> inscripciones=inscripcionData.obtenerInscripcionesPorAlumno(alumno.getIdAlumno());
+        Alumno alumno = (Alumno) cbListadoAlumnos.getSelectedItem();
+        if (alumno != null) {
+            List<Inscripcion> inscripciones = inscripcionData.obtenerInscripcionesPorAlumno(alumno.getIdAlumno());
             for (Inscripcion inscripcion : inscripciones) {
-                Materia materia=materiaData.buscarMateria(inscripcion.getMateria().getIdMateria());
+                Materia materia = materiaData.buscarMateria(inscripcion.getMateria().getIdMateria());
                 modelo.addRow(new Object[]{materia.getIdMateria(), materia.getNombre(), inscripcion.getNota()});
-                
+
             }
         }
     }
-    
-    private void limpiarTabla(){
+
+    private void limpiarTabla() {
         modelo.setRowCount(0);
     }
-    
 
+    public void centrarEnDesktopPane() {
+        Dimension desktopSize = this.getDesktopPane().getSize();
+        Dimension internalFrameSize = this.getSize();
+        int x = (desktopSize.width - internalFrameSize.width) / 2;
+        int y = (desktopSize.height - internalFrameSize.height) / 2;
+        this.setLocation(x, y);
+    }
 
 }
-

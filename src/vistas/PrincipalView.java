@@ -199,6 +199,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormularioMateriaActionPerformed
         MateriaView materiaView = new MateriaView();
         jDesktopPane1.add(materiaView);
+        materiaView.centrarEnDesktopPane();
         materiaView.setVisible(true);
         materiaView.moveToFront();
     }//GEN-LAST:event_jMenuFormularioMateriaActionPerformed
@@ -206,6 +207,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItemInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInscripcionesActionPerformed
         InscripcionView inscripcionView = new InscripcionView();
         jDesktopPane1.add(inscripcionView);
+        inscripcionView.centrarEnDesktopPane();
         inscripcionView.setVisible(true);
         inscripcionView.moveToFront();
     }//GEN-LAST:event_jMenuItemInscripcionesActionPerformed
@@ -213,6 +215,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItemNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNotasActionPerformed
         NotaView notaView = new NotaView();
         jDesktopPane1.add(notaView);
+        notaView.centrarEnDesktopPane();
         notaView.setVisible(true);
         notaView.moveToFront();
     }//GEN-LAST:event_jMenuItemNotasActionPerformed
@@ -220,6 +223,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private void jMenuItemAlumXMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlumXMateriaActionPerformed
         AlumnoPorMateria alumnoPorMateria = new AlumnoPorMateria();
         jDesktopPane1.add(alumnoPorMateria);
+        alumnoPorMateria.centrarEnDesktopPane();
         alumnoPorMateria.setVisible(true);
         alumnoPorMateria.moveToFront();
     }//GEN-LAST:event_jMenuItemAlumXMateriaActionPerformed

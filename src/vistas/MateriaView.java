@@ -3,6 +3,7 @@ package vistas;
 import accesoADatos.MateriaData;
 import entidades.Materia;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.RenderingHints.Key;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
@@ -12,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author telma
  */
 public class MateriaView extends javax.swing.JInternalFrame {
-    
+
     MateriaData materiaData = new MateriaData();
     private boolean editando = false; //Flag para controlar si se está editando una materia
 
@@ -71,6 +72,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         bEliminar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         bEliminar.setForeground(new java.awt.Color(255, 255, 255));
         bEliminar.setText("Eliminar");
+        bEliminar.setEnabled(false);
         bEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bEliminarActionPerformed(evt);
@@ -83,6 +85,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         bGuardar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         bGuardar.setForeground(new java.awt.Color(255, 255, 255));
         bGuardar.setText("Guardar");
+        bGuardar.setEnabled(false);
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bGuardarActionPerformed(evt);
@@ -95,6 +98,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         bEditar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         bEditar.setForeground(new java.awt.Color(255, 255, 255));
         bEditar.setText("Editar");
+        bEditar.setEnabled(false);
         bEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bEditarActionPerformed(evt);
@@ -176,7 +180,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         jPanel1.add(lCodigo);
         lCodigo.setBounds(30, 80, 61, 41);
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(40, 50, 490, 10);
+        jSeparator1.setBounds(40, 50, 490, 3);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -206,12 +210,12 @@ public class MateriaView extends javax.swing.JInternalFrame {
             tfanio.setText(Integer.toString(materiaEncontrada.getAnioMateria()));
             rbEstado.setSelected(materiaEncontrada.isActivo());
             rbEstado.setEnabled(true);
+            activarBotones();
         } else {
             clean();
             JOptionPane.showMessageDialog(null, "Materia no encontrada");
-            
         }
-        
+
 
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -219,10 +223,12 @@ public class MateriaView extends javax.swing.JInternalFrame {
         clean();
         desactivarId();
         activarNAE();
+        bGuardar.setEnabled(true);
     }//GEN-LAST:event_bNuevoActionPerformed
 
     private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
-        Color original = bEditar.getBackground();
+        //Color original = bEditar.getBackground();
+        Color original = new Color(12, 43, 135);
         if (!editando) {//si no se está editando...
             String idMateria = tfCodigo.getText();
             if (idMateria.isEmpty()) {
@@ -230,7 +236,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 return;
             }
             Materia materiaExistente = materiaData.buscarMateria(Integer.parseInt(idMateria));
-            
+
             if (materiaExistente == null) {
                 JOptionPane.showMessageDialog(null, "No se encontró la materia");
                 return;
@@ -266,15 +272,12 @@ public class MateriaView extends javax.swing.JInternalFrame {
             materiaData.modificarMateria(materiaEditada);
 
             //limpiar
-            bEditar.setBackground(Color.LIGHT_GRAY);
+            bEditar.setBackground(original);
             editando = false;
             bEditar.setText("Editar");
             clean();
-            activar();
-            
+            desactivar();
         }
-        
-
     }//GEN-LAST:event_bEditarActionPerformed
 
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
@@ -290,7 +293,13 @@ public class MateriaView extends javax.swing.JInternalFrame {
         Materia materiaExistente = materiaData.buscarMateriaPorNombre(nombreMateria);
         if (materiaExistente != null) {
             //si existe, se notifica...
-            JOptionPane.showMessageDialog(null, "La materia ya existe, puede editarla.");
+            JOptionPane.showMessageDialog(null, "La materia ya existe, sólo puede editarla.");
+            //y se settean los campos habilitando la opción editar
+            tfCodigo.setText(String.valueOf(materiaExistente.getIdMateria()));
+            tfNombre.setText(nombreMateria);
+            tfanio.setText(String.valueOf(materiaExistente.getAnioMateria()));
+            rbEstado.setSelected(materiaExistente.isActivo());
+            activarBotones();
         } else {
             //si no existe setteo y guardo...
             Materia nuevaMateria = new Materia();
@@ -298,9 +307,10 @@ public class MateriaView extends javax.swing.JInternalFrame {
             nuevaMateria.setAnioMateria(Integer.parseInt(anioMateria));
             nuevaMateria.setActivo(rbEstado.isSelected());
             materiaData.guardarMateria(nuevaMateria);
+            clean();
+            desactivar();
+            desactivarBotones();
         }
-        clean();
-        activar();
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
@@ -317,20 +327,10 @@ public class MateriaView extends javax.swing.JInternalFrame {
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
         String idMateria = tfCodigo.getText();
-//        int codigo = JOptionPane.showConfirmDialog(null, "Seguro desea borrar la materia?", "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-//
-//        if (idMateria != null && codigo == JOptionPane.YES_OPTION) {
-//            JOptionPane.showMessageDialog(null, "Seguro desea borrar la materia?");
-//            materiaData.eliminarMateria(Integer.parseInt(idMateria));
-//        } else if (codigo == JOptionPane.NO_OPTION) {
-//            JOptionPane.showMessageDialog(null, "Cancelaste...");
-//            return;
-//        }
-
         if (idMateria != null) {
             materiaData.eliminarMateria(Integer.parseInt(idMateria));
             clean();
-            activar();
+            desactivar();
         } else {
             JOptionPane.showConfirmDialog(null, "No se seleccionó ninguna materia a eliminar.", "Error", JOptionPane.YES_NO_OPTION);
         }
@@ -362,21 +362,41 @@ public class MateriaView extends javax.swing.JInternalFrame {
         tfanio.setText("");
         rbEstado.setSelected(false);
     }
-    
+
     private void desactivarId() {
         tfCodigo.setEditable(false);
     }
-    
-    private void activar() {
+
+    private void desactivar() {
         tfCodigo.setEditable(true);
         tfNombre.setEditable(false);
         tfanio.setEditable(false);
         rbEstado.setEnabled(false);
     }
-    
+
     private void activarNAE() {
         tfNombre.setEditable(true);
         tfanio.setEditable(true);
         rbEstado.setEnabled(true);
+    }
+
+    private void activarBotones() {
+        bEliminar.setEnabled(true);
+        bGuardar.setEnabled(true);
+        bEditar.setEnabled(true);
+    }
+
+    public void centrarEnDesktopPane() {
+        Dimension desktopSize = this.getDesktopPane().getSize();
+        Dimension internalFrameSize = this.getSize();
+        int x = (desktopSize.width - internalFrameSize.width) / 2;
+        int y = (desktopSize.height - internalFrameSize.height) / 2;
+        this.setLocation(x, y);
+    }
+
+    private void desactivarBotones() {
+        bEliminar.setEnabled(false);
+        bGuardar.setEnabled(false);
+        bEditar.setEnabled(false);
     }
 }

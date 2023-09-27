@@ -6,6 +6,7 @@ import accesoADatos.MateriaData;
 import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -314,5 +315,13 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     private void resetearRb() {
         rbMatInscrip.setSelected(false);
         rbMatnoInscrip.setSelected(false);
+    }
+    
+    public void centrarEnDesktopPane() {
+        Dimension desktopSize = this.getDesktopPane().getSize();
+        Dimension internalFrameSize = this.getSize();
+        int x = (desktopSize.width - internalFrameSize.width) / 2;
+        int y = (desktopSize.height - internalFrameSize.height) / 2;
+        this.setLocation(x, y);
     }
 }

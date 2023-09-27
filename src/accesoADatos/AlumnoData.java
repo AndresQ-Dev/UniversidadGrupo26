@@ -34,10 +34,10 @@ public class AlumnoData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 alumno.setIdAlumno(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Alumno añadido con éxito con ID: "+alumno.getIdAlumno());
+                JOptionPane.showMessageDialog(null, "Alumno añadido con éxito con ID: " + alumno.getIdAlumno());
             }
             ps.close();
-
+            rs.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno" + ex.getMessage());
         }
@@ -182,14 +182,14 @@ public class AlumnoData {
             JOptionPane.showMessageDialog(null, "Error de acceso a BD " + ex.getMessage());
         }
     }
-    
+
     public boolean existeAlumno(int id) throws SQLException {
-    String sqlSelect = "SELECT 1 FROM alumno WHERE idAlumno=?";
-    PreparedStatement selectPs = con.prepareStatement(sqlSelect);
-    selectPs.setInt(1, id);
-    ResultSet resultSet = selectPs.executeQuery();
-    
-    return resultSet.next();
-}
+        String sqlSelect = "SELECT 1 FROM alumno WHERE idAlumno=?";
+        PreparedStatement selectPs = con.prepareStatement(sqlSelect);
+        selectPs.setInt(1, id);
+        ResultSet resultSet = selectPs.executeQuery();
+
+        return resultSet.next();
+    }
 
 }

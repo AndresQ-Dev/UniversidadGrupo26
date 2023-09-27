@@ -1,13 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package vistas;
 
 import accesoADatos.InscripcionData;
 import accesoADatos.MateriaData;
 import entidades.Alumno;
 import entidades.Materia;
+import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -167,5 +165,13 @@ private void cargarCombo() {
         modelo.addColumn("Apellido");
         modelo.addColumn("Nombre");
         tBListaalumnos.setModel(modelo);
+    }
+    
+    public void centrarEnDesktopPane() {
+        Dimension desktopSize = this.getDesktopPane().getSize();
+        Dimension internalFrameSize = this.getSize();
+        int x = (desktopSize.width - internalFrameSize.width) / 2;
+        int y = (desktopSize.height - internalFrameSize.height) / 2;
+        this.setLocation(x, y);
     }
 }
