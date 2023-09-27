@@ -317,7 +317,7 @@ public class AlumnoView extends javax.swing.JInternalFrame {
                 alumnoData.modificarAlumno(alumnoEncontrado);
             }
         } catch (NullPointerException exception) {
-            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha válida " + exception.getMessage());
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha válida. \nDetalle: " + exception.getMessage());
             return;
         }
         clean();
