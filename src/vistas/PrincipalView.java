@@ -221,7 +221,7 @@ public class PrincipalView extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItemNotasActionPerformed
 
     private void jMenuItemAlumXMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlumXMateriaActionPerformed
-        AlumnoPorMateria alumnoPorMateria = new AlumnoPorMateria();
+        AlumnoPorMateriaView alumnoPorMateria = new AlumnoPorMateriaView();
         jDesktopPane1.add(alumnoPorMateria);
         alumnoPorMateria.centrarEnDesktopPane();
         alumnoPorMateria.setVisible(true);

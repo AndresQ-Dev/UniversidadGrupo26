@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author andres
  */
-public class AlumnoPorMateria extends javax.swing.JInternalFrame {
+public class AlumnoPorMateriaView extends javax.swing.JInternalFrame {
 
     MateriaData materiaData = new MateriaData();
     DefaultTableModel modelo = new DefaultTableModel();
@@ -24,7 +24,7 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
     /**
      * Creates new form AlumnoPorMateria
      */
-    public AlumnoPorMateria() {
+    public AlumnoPorMateriaView() {
         initComponents();
         setSize(586, 524);
         cargarCombo();
