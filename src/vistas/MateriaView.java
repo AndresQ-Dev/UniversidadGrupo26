@@ -48,11 +48,16 @@ public class MateriaView extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         tfCodigo = new javax.swing.JTextField();
         lCodigo = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setClosable(true);
 
+        jPanel1.setBackground(new java.awt.Color(39, 60, 117));
         jPanel1.setLayout(null);
 
+        bNuevo.setBackground(new java.awt.Color(12, 43, 135));
+        bNuevo.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        bNuevo.setForeground(new java.awt.Color(255, 255, 255));
         bNuevo.setText("Nuevo");
         bNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,8 +65,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(bNuevo);
-        bNuevo.setBounds(30, 390, 87, 25);
+        bNuevo.setBounds(30, 430, 87, 28);
 
+        bEliminar.setBackground(new java.awt.Color(12, 43, 135));
+        bEliminar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        bEliminar.setForeground(new java.awt.Color(255, 255, 255));
         bEliminar.setText("Eliminar");
         bEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,8 +77,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(bEliminar);
-        bEliminar.setBounds(140, 390, 86, 25);
+        bEliminar.setBounds(130, 430, 97, 28);
 
+        bGuardar.setBackground(new java.awt.Color(12, 43, 135));
+        bGuardar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        bGuardar.setForeground(new java.awt.Color(255, 255, 255));
         bGuardar.setText("Guardar");
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,8 +89,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(bGuardar);
-        bGuardar.setBounds(240, 390, 84, 25);
+        bGuardar.setBounds(240, 430, 94, 28);
 
+        bEditar.setBackground(new java.awt.Color(12, 43, 135));
+        bEditar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        bEditar.setForeground(new java.awt.Color(255, 255, 255));
         bEditar.setText("Editar");
         bEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,19 +101,23 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(bEditar);
-        bEditar.setBounds(350, 390, 160, 25);
+        bEditar.setBounds(350, 430, 180, 28);
 
+        lEstado.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        lEstado.setForeground(new java.awt.Color(255, 255, 255));
         lEstado.setText("Estado");
         jPanel1.add(lEstado);
-        lEstado.setBounds(30, 300, 61, 28);
+        lEstado.setBounds(30, 340, 61, 28);
 
         rbEstado.setEnabled(false);
         jPanel1.add(rbEstado);
-        rbEstado.setBounds(110, 310, 38, 19);
+        rbEstado.setBounds(140, 350, 38, 19);
 
+        lAño.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        lAño.setForeground(new java.awt.Color(255, 255, 255));
         lAño.setText("Año");
         jPanel1.add(lAño);
-        lAño.setBounds(40, 230, 61, 41);
+        lAño.setBounds(30, 280, 61, 41);
 
         tfanio.setEditable(false);
         tfanio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -108,11 +126,13 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(tfanio);
-        tfanio.setBounds(110, 230, 98, 33);
+        tfanio.setBounds(140, 280, 98, 33);
 
+        lNombre.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        lNombre.setForeground(new java.awt.Color(255, 255, 255));
         lNombre.setText("Nombre");
         jPanel1.add(lNombre);
-        lNombre.setBounds(30, 160, 61, 41);
+        lNombre.setBounds(30, 200, 61, 41);
 
         tfNombre.setEditable(false);
         tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -121,9 +141,11 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(tfNombre);
-        tfNombre.setBounds(110, 160, 216, 33);
+        tfNombre.setBounds(140, 200, 216, 33);
 
-        bBuscar.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
+        bBuscar.setBackground(new java.awt.Color(12, 43, 135));
+        bBuscar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        bBuscar.setForeground(new java.awt.Color(255, 255, 255));
         bBuscar.setText("Buscar");
         bBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,13 +153,14 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(bBuscar);
-        bBuscar.setBounds(340, 80, 178, 25);
+        bBuscar.setBounds(340, 80, 190, 28);
 
-        jLabel1.setFont(new java.awt.Font("Candara", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Materia");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 20, 570, 28);
+        jLabel1.setBounds(0, 10, 570, 28);
 
         tfCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
@@ -145,11 +168,15 @@ public class MateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(tfCodigo);
-        tfCodigo.setBounds(120, 80, 101, 33);
+        tfCodigo.setBounds(140, 80, 101, 33);
 
+        lCodigo.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        lCodigo.setForeground(new java.awt.Color(255, 255, 255));
         lCodigo.setText("Código");
         jPanel1.add(lCodigo);
-        lCodigo.setBounds(40, 80, 61, 41);
+        lCodigo.setBounds(30, 80, 61, 41);
+        jPanel1.add(jSeparator1);
+        jSeparator1.setBounds(40, 50, 490, 10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -334,6 +361,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     private javax.swing.JButton bNuevo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lAño;
     private javax.swing.JLabel lCodigo;
     private javax.swing.JLabel lEstado;

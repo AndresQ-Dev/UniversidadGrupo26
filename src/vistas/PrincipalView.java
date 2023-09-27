@@ -1,5 +1,7 @@
-
 package vistas;
+
+import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -42,6 +44,7 @@ public class PrincipalView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
+        jDesktopPane1.setBackground(new java.awt.Color(65, 67, 76));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(1024, 769));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/navy.png"))); // NOI18N
@@ -65,7 +68,7 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuAlumno.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jMenuAlumno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/alumno 1.png"))); // NOI18N
-        jMenuAlumno.setText("Alumno");
+        jMenuAlumno.setText("Alumno   ");
         jMenuAlumno.setContentAreaFilled(false);
         jMenuAlumno.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
 
@@ -80,7 +83,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuAlumno);
 
-        jMenuMateria.setText("Materia");
+        jMenuMateria.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jMenuMateria.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/materia (copy).png"))); // NOI18N
+        jMenuMateria.setText("Materia   ");
+        jMenuMateria.setContentAreaFilled(false);
         jMenuMateria.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuMateria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,7 +105,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuMateria);
 
-        jMenuAdministracion.setText("Administracion");
+        jMenuAdministracion.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jMenuAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/administarcion (copy).png"))); // NOI18N
+        jMenuAdministracion.setText("Administracion   ");
+        jMenuAdministracion.setContentAreaFilled(false);
         jMenuAdministracion.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
 
         jMenuItemInscripciones.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
@@ -122,7 +131,10 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuAdministracion);
 
-        jMenuConsultas.setText("Consultas");
+        jMenuConsultas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jMenuConsultas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/consulta_bd.png"))); // NOI18N
+        jMenuConsultas.setText("Consultas      ");
+        jMenuConsultas.setContentAreaFilled(false);
         jMenuConsultas.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
 
         jMenuItemAlumXMateria.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
@@ -136,8 +148,24 @@ public class PrincipalView extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuConsultas);
 
+        jMenuSalir.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jMenuSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cerrar.png"))); // NOI18N
         jMenuSalir.setText("Salir");
+        jMenuSalir.setContentAreaFilled(false);
         jMenuSalir.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        jMenuSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenuSalirMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jMenuSalirMousePressed(evt);
+            }
+        });
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
@@ -150,58 +178,74 @@ public class PrincipalView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItemAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlumnoActionPerformed
-    AlumnoView alumnoView=new AlumnoView();
-    jDesktopPane1.add(alumnoView);
-    alumnoView.centrarEnDesktopPane();
-    alumnoView.setVisible(true);
-    alumnoView.moveToFront();        
+        AlumnoView alumnoView = new AlumnoView();
+        jDesktopPane1.add(alumnoView);
+        alumnoView.centrarEnDesktopPane();
+        alumnoView.setVisible(true);
+        alumnoView.moveToFront();
     }//GEN-LAST:event_jMenuItemAlumnoActionPerformed
 
     private void jMenuMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuMateriaActionPerformed
-    
+
     }//GEN-LAST:event_jMenuMateriaActionPerformed
 
     private void jMenuFormularioMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuFormularioMateriaActionPerformed
-    MateriaView materiaView=new MateriaView();
-    jDesktopPane1.add(materiaView);
-    materiaView.setVisible(true);
-    materiaView.moveToFront();
+        MateriaView materiaView = new MateriaView();
+        jDesktopPane1.add(materiaView);
+        materiaView.setVisible(true);
+        materiaView.moveToFront();
     }//GEN-LAST:event_jMenuFormularioMateriaActionPerformed
 
     private void jMenuItemInscripcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInscripcionesActionPerformed
         InscripcionView inscripcionView = new InscripcionView();
-        jDesktopPane1.add( inscripcionView);
+        jDesktopPane1.add(inscripcionView);
         inscripcionView.setVisible(true);
         inscripcionView.moveToFront();
     }//GEN-LAST:event_jMenuItemInscripcionesActionPerformed
 
     private void jMenuItemNotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemNotasActionPerformed
-        NotaView notaView=new NotaView();
+        NotaView notaView = new NotaView();
         jDesktopPane1.add(notaView);
         notaView.setVisible(true);
         notaView.moveToFront();
     }//GEN-LAST:event_jMenuItemNotasActionPerformed
 
     private void jMenuItemAlumXMateriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAlumXMateriaActionPerformed
-       AlumnoPorMateria alumnoPorMateria=new AlumnoPorMateria();
-       jDesktopPane1.add(alumnoPorMateria);
-       alumnoPorMateria.setVisible(true);
-       alumnoPorMateria.moveToFront();
+        AlumnoPorMateria alumnoPorMateria = new AlumnoPorMateria();
+        jDesktopPane1.add(alumnoPorMateria);
+        alumnoPorMateria.setVisible(true);
+        alumnoPorMateria.moveToFront();
     }//GEN-LAST:event_jMenuItemAlumXMateriaActionPerformed
+
+    private void jMenuSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSalirMouseClicked
+       
+    }//GEN-LAST:event_jMenuSalirMouseClicked
+
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+     
+    }//GEN-LAST:event_jMenuSalirActionPerformed
+
+    private void jMenuSalirMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuSalirMousePressed
+    int confirm = JOptionPane.showConfirmDialog(null,
+                "¿Deseas salir de la aplicación?", "Confirmar salida",
+                JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE);
+        if (confirm == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jMenuSalirMousePressed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Locale.setDefault(new Locale("es", "ES"));
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

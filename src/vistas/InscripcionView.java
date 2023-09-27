@@ -51,6 +51,9 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(586, 524));
         jPanel1.setLayout(null);
 
+        btInscrip.setBackground(new java.awt.Color(12, 43, 135));
+        btInscrip.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        btInscrip.setForeground(new java.awt.Color(255, 255, 255));
         btInscrip.setText("Inscribir");
         btInscrip.setEnabled(false);
         btInscrip.addActionListener(new java.awt.event.ActionListener() {
@@ -59,9 +62,12 @@ public class InscripcionView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btInscrip);
-        btInscrip.setBounds(30, 450, 84, 25);
+        btInscrip.setBounds(30, 450, 120, 28);
 
-        btAnularInscrip.setText("Anular Inscripciones");
+        btAnularInscrip.setBackground(new java.awt.Color(12, 43, 135));
+        btAnularInscrip.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        btAnularInscrip.setForeground(new java.awt.Color(255, 255, 255));
+        btAnularInscrip.setText("Anular Inscripcion");
         btAnularInscrip.setEnabled(false);
         btAnularInscrip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,8 +75,11 @@ public class InscripcionView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btAnularInscrip);
-        btAnularInscrip.setBounds(190, 450, 161, 25);
+        btAnularInscrip.setBounds(220, 450, 180, 28);
 
+        btSalir.setBackground(new java.awt.Color(12, 43, 135));
+        btSalir.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        btSalir.setForeground(new java.awt.Color(255, 255, 255));
         btSalir.setText("Salir");
         btSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +87,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(btSalir);
-        btSalir.setBounds(430, 450, 72, 25);
+        btSalir.setBounds(470, 450, 72, 28);
 
         tbMaterias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,8 +103,10 @@ public class InscripcionView extends javax.swing.JInternalFrame {
         jScrollPane2.setViewportView(tbMaterias);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(29, 210, 479, 213);
+        jScrollPane2.setBounds(29, 210, 510, 213);
 
+        rbMatInscrip.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        rbMatInscrip.setForeground(new java.awt.Color(255, 255, 255));
         rbMatInscrip.setText("Materias Inscriptas");
         rbMatInscrip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,8 +114,10 @@ public class InscripcionView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(rbMatInscrip);
-        rbMatInscrip.setBounds(31, 181, 149, 23);
+        rbMatInscrip.setBounds(30, 170, 152, 22);
 
+        rbMatnoInscrip.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        rbMatnoInscrip.setForeground(new java.awt.Color(255, 255, 255));
         rbMatnoInscrip.setText("Materias no Inscriptas");
         rbMatnoInscrip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,17 +125,20 @@ public class InscripcionView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(rbMatnoInscrip);
-        rbMatnoInscrip.setBounds(299, 181, 168, 23);
+        rbMatnoInscrip.setBounds(370, 170, 173, 22);
 
-        jLabel3.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 19)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Listado de Materias");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(0, 119, 479, 22);
+        jLabel3.setBounds(29, 119, 520, 23);
 
+        jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Seleccione un Alumno :");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(29, 67, 149, 19);
+        jLabel2.setBounds(29, 67, 158, 18);
 
         cbListadodeAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -135,15 +151,16 @@ public class InscripcionView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(cbListadodeAlumnos);
-        cbListadodeAlumnos.setBounds(212, 64, 275, 25);
+        cbListadodeAlumnos.setBounds(212, 64, 330, 25);
 
-        jLabel1.setFont(new java.awt.Font("Cantarell", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("    Formulario de Inscripción");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(42, 6, 490, 22);
+        jLabel1.setBounds(42, 6, 490, 24);
         jPanel1.add(jSeparator1);
-        jSeparator1.setBounds(42, 40, 508, 10);
+        jSeparator1.setBounds(30, 40, 510, 10);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

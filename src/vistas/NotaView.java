@@ -58,9 +58,13 @@ MateriaData materiaData=new MateriaData();
         setClosable(true);
         setPreferredSize(new java.awt.Dimension(586, 524));
 
+        jPanel1.setBackground(new java.awt.Color(39, 60, 117));
         jPanel1.setPreferredSize(new java.awt.Dimension(586, 524));
         jPanel1.setLayout(null);
 
+        bGuardar.setBackground(new java.awt.Color(12, 43, 135));
+        bGuardar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        bGuardar.setForeground(new java.awt.Color(255, 255, 255));
         bGuardar.setText("Guardar");
         bGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,8 +72,11 @@ MateriaData materiaData=new MateriaData();
             }
         });
         jPanel1.add(bGuardar);
-        bGuardar.setBounds(30, 450, 100, 25);
+        bGuardar.setBounds(20, 450, 100, 28);
 
+        bSalir.setBackground(new java.awt.Color(12, 43, 135));
+        bSalir.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        bSalir.setForeground(new java.awt.Color(255, 255, 255));
         bSalir.setText("Salir");
         bSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,7 +84,7 @@ MateriaData materiaData=new MateriaData();
             }
         });
         jPanel1.add(bSalir);
-        bSalir.setBounds(470, 450, 72, 25);
+        bSalir.setBounds(480, 450, 72, 25);
 
         tbNotas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -95,9 +102,12 @@ MateriaData materiaData=new MateriaData();
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(20, 110, 530, 310);
 
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Seleccione un Alumno");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 50, 190, 25);
+        jLabel1.setBounds(20, 50, 220, 25);
 
         cbListadoAlumnos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,8 +117,10 @@ MateriaData materiaData=new MateriaData();
         jPanel1.add(cbListadoAlumnos);
         cbListadoAlumnos.setBounds(279, 50, 270, 25);
 
+        jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("     Carga de Datos");
+        jLabel2.setText("Carga de Notas");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(11, 10, 550, 21);
 

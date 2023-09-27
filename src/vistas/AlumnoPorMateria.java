@@ -52,26 +52,34 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
 
         setClosable(true);
 
+        jPanel1.setBackground(new java.awt.Color(39, 60, 117));
         jPanel1.setLayout(null);
 
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 20)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Listado de Alumnos por Materia");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(190, 10, 220, 16);
+        jLabel1.setBounds(40, 10, 500, 24);
         jPanel1.add(jSeparator1);
         jSeparator1.setBounds(40, 40, 500, 10);
 
+        jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Seleccione una Materia: ");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(80, 90, 190, 16);
+        jLabel2.setBounds(80, 90, 190, 18);
 
+        cBlistadoMaterias.setFont(new java.awt.Font("Cantarell", 0, 15)); // NOI18N
         cBlistadoMaterias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cBlistadoMateriasActionPerformed(evt);
             }
         });
         jPanel1.add(cBlistadoMaterias);
-        cBlistadoMaterias.setBounds(280, 90, 260, 26);
+        cBlistadoMaterias.setBounds(280, 90, 260, 25);
 
+        tBListaalumnos.setFont(new java.awt.Font("Cantarell", 0, 15)); // NOI18N
         tBListaalumnos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -88,6 +96,9 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(40, 150, 500, 260);
 
+        bSalir.setBackground(new java.awt.Color(12, 43, 135));
+        bSalir.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        bSalir.setForeground(new java.awt.Color(255, 255, 255));
         bSalir.setText("Salir");
         bSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +106,7 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(bSalir);
-        bSalir.setBounds(460, 440, 53, 28);
+        bSalir.setBounds(460, 440, 72, 28);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
