@@ -9,6 +9,7 @@ import accesoADatos.MateriaData;
 import entidades.Alumno;
 import entidades.Materia;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
@@ -152,6 +153,7 @@ public class AlumnoPorMateria extends javax.swing.JInternalFrame {
 private void cargarCombo() {
         List<Materia> listaMaterias = new ArrayList<>();
         listaMaterias = materiaData.listarMaterias();
+        Collections.sort(listaMaterias);
         if (listaMaterias != null) {
             for (Materia materia : listaMaterias) {
                 cBlistadoMaterias.addItem(materia);                

@@ -7,25 +7,27 @@ import entidades.Alumno;
 import entidades.Inscripcion;
 import entidades.Materia;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class InscripcionView extends javax.swing.JInternalFrame {
-
+    
     private AlumnoData alumnoData = new AlumnoData();
     private InscripcionData inscripcionData = new InscripcionData();
     private DefaultTableModel modelo = new DefaultTableModel();
     private Boolean materiasInscriptasSeleccionadas = false;
     private MateriaData materiaData = new MateriaData();
-
+    
     public InscripcionView() {
         initComponents();
         setSize(586, 524);
         cargarCombo();
         armarCabecera();
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -212,7 +214,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btSalirActionPerformed
 
     private void btInscripActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInscripActionPerformed
-
+        
         Alumno alumnoSeleccionado = (Alumno) cbListadodeAlumnos.getSelectedItem();
         int indiceFila = tbMaterias.getSelectedRow();
         if (indiceFila != -1) {
@@ -259,39 +261,39 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void cargarCombo() {
-
+        
         List<Alumno> listaAlumnos = new ArrayList();
         listaAlumnos = alumnoData.listarAlumnos();
-
+        Collections.sort(listaAlumnos);
         for (Alumno listaAlumno : listaAlumnos) {
             cbListadodeAlumnos.addItem(listaAlumno);
         }
     }
-
+    
     private void armarCabecera() {
         modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Año");
         tbMaterias.setModel(modelo);
     }
-
+    
     private void cargarMateriasInscriptas() {
         List<Materia> listaMaterias = new ArrayList();
         Alumno alumno = (Alumno) cbListadodeAlumnos.getSelectedItem();
         listaMaterias = inscripcionData.obtenerMateriasCursadas(alumno.getIdAlumno());
-
+        
         if (listaMaterias != null) {
             for (Materia listaMateria : listaMaterias) {
                 modelo.addRow(new Object[]{listaMateria.getIdMateria(), listaMateria.getNombre(), listaMateria.getAnioMateria()});
             }
         }
     }
-
+    
     private void cargarMateriasNoInscriptas() {
         List<Materia> listaMaterias = new ArrayList();
         Alumno alumno = (Alumno) cbListadodeAlumnos.getSelectedItem();
         listaMaterias = inscripcionData.obtenerMateriasNoCursadas(alumno.getIdAlumno());
-
+        
         if (listaMaterias != null) {
             for (Materia listaMateria : listaMaterias) {
                 modelo.addRow(new Object[]{listaMateria.getIdMateria(), listaMateria.getNombre(), listaMateria.getAnioMateria()});
@@ -308,7 +310,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     private void limpiarTabla() {
         modelo.setRowCount(0);
     }
-
+    
     private void resetearRb() {
         rbMatInscrip.setSelected(false);
         rbMatnoInscrip.setSelected(false);

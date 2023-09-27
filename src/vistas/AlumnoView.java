@@ -1,15 +1,14 @@
 /*
 AGREGAR VALIDACIONES
 
-*/
-
-
+ */
 package vistas;
 
 import accesoADatos.AlumnoData;
 import entidades.Alumno;
 import java.awt.Dimension;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.time.ZoneId;
 import javax.swing.JOptionPane;
 
@@ -18,7 +17,7 @@ import javax.swing.JOptionPane;
  * @author andres
  */
 public class AlumnoView extends javax.swing.JInternalFrame {
-    
+
     AlumnoData alumnoData = new AlumnoData();
 
     /**
@@ -108,28 +107,49 @@ public class AlumnoView extends javax.swing.JInternalFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fecha de Nacimiento");
 
+        jcFechaNacimiento.setEnabled(false);
+
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Estado");
+
+        rbEstado.setEnabled(false);
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre");
 
+        tfNombre.setEditable(false);
         tfNombre.setPreferredSize(new java.awt.Dimension(64, 30));
+        tfNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfNombreKeyTyped(evt);
+            }
+        });
 
         jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido");
 
+        tfApellido.setEditable(false);
         tfApellido.setMinimumSize(new java.awt.Dimension(64, 30));
         tfApellido.setPreferredSize(new java.awt.Dimension(64, 30));
+        tfApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfApellidoKeyTyped(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Documento");
 
         tfDocumento.setPreferredSize(new java.awt.Dimension(64, 30));
+        tfDocumento.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                tfDocumentoKeyTyped(evt);
+            }
+        });
 
         bBuscar.setBackground(new java.awt.Color(12, 43, 135));
         bBuscar.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -245,31 +265,40 @@ public class AlumnoView extends javax.swing.JInternalFrame {
             tfNombre.setText(encontrado.getNombre());
             rbEstado.setSelected(encontrado.isActivo());
             jcFechaNacimiento.setDate(Date.valueOf(encontrado.getFechaNac()));
+            activarCampos();
 
         } else {
             clean();
             JOptionPane.showMessageDialog(null, "Alumno no encontrado");
         }
-
+        activarBotones();
     }//GEN-LAST:event_bBuscarActionPerformed
 
     private void bNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bNuevoActionPerformed
         clean();
         bGuardar.setEnabled(true);
+        activarCampos();
     }//GEN-LAST:event_bNuevoActionPerformed
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
-        String dni=tfDocumento.getText();
-        Alumno alumnoEncontrado=alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
-        if (alumnoEncontrado!=null) {
+        String dni = tfDocumento.getText();
+        Alumno alumnoEncontrado = alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
+        if (alumnoEncontrado != null) {
             alumnoData.eliminarAlumno(alumnoEncontrado.getIdAlumno());
             clean();
         }
-
+        desactivarCampos();
+        desactivarBotones();
     }//GEN-LAST:event_bEliminarActionPerformed
 
     private void bGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bGuardarActionPerformed
+        try{
         String dni = tfDocumento.getText();
+        if (dni.isEmpty() || tfApellido.getText().isEmpty() || tfNombre.getText().isEmpty() || jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate()==null) {
+            JOptionPane.showMessageDialog(null, "Debe completar todos los campos");
+            return;
+        }  
+        
         Alumno alumnoEncontrado = alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
         if (alumnoEncontrado == null) {
             Alumno newAlumno = new Alumno();
@@ -280,14 +309,37 @@ public class AlumnoView extends javax.swing.JInternalFrame {
             newAlumno.setFechaNac(jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             alumnoData.guardarAlumno(newAlumno);
             clean();
-        }else{
-            JOptionPane.showMessageDialog(null, "Ya existe el Alumno");
+        } else {
+            alumnoEncontrado.setApellido(tfApellido.getText());
+            alumnoEncontrado.setNombre(tfNombre.getText());
+            alumnoEncontrado.setFechaNac(jcFechaNacimiento.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            alumnoData.modificarAlumno(alumnoEncontrado);
         }
+        }catch(NullPointerException exception){
+            JOptionPane.showMessageDialog(null, "Debe ingresar una fecha válida "+exception.getMessage());
+            return;
+        }
+        clean();
+        desactivarBotones();
+        desactivarCampos();
+        
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void bSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bSalirActionPerformed
         dispose();
     }//GEN-LAST:event_bSalirActionPerformed
+
+    private void tfDocumentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDocumentoKeyTyped
+    AccesoService.Service.esNumero(evt);
+    }//GEN-LAST:event_tfDocumentoKeyTyped
+
+    private void tfApellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoKeyTyped
+    AccesoService.Service.esLetra(evt);
+    }//GEN-LAST:event_tfApellidoKeyTyped
+
+    private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
+         AccesoService.Service.esLetra(evt);
+    }//GEN-LAST:event_tfNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -318,12 +370,36 @@ public class AlumnoView extends javax.swing.JInternalFrame {
         rbEstado.setSelected(false);
         jcFechaNacimiento.setDate(null);
     }
-    
+
     public void centrarEnDesktopPane() {
-    Dimension desktopSize = this.getDesktopPane().getSize();
-    Dimension internalFrameSize = this.getSize();
-    int x = (desktopSize.width - internalFrameSize.width) / 2;
-    int y = (desktopSize.height - internalFrameSize.height) / 2;
-    this.setLocation(x, y);
-}
+        Dimension desktopSize = this.getDesktopPane().getSize();
+        Dimension internalFrameSize = this.getSize();
+        int x = (desktopSize.width - internalFrameSize.width) / 2;
+        int y = (desktopSize.height - internalFrameSize.height) / 2;
+        this.setLocation(x, y);
+    }
+
+    private void activarCampos() {
+        tfApellido.setEditable(true);
+        tfNombre.setEditable(true);
+        rbEstado.setEnabled(true);
+        jcFechaNacimiento.setEnabled(true);
+    }
+
+    private void desactivarCampos() {
+        tfApellido.setEditable(false);
+        tfNombre.setEditable(false);
+        rbEstado.setEnabled(false);
+        jcFechaNacimiento.setEnabled(false);
+    }
+
+    private void desactivarBotones() {
+        bGuardar.setEnabled(false);
+        bEliminar.setEnabled(false);
+    }
+
+    private void activarBotones() {
+        bEliminar.setEnabled(true);
+        bGuardar.setEnabled(true);
+    }
 }

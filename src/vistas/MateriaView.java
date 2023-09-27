@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  * @author telma
  */
 public class MateriaView extends javax.swing.JInternalFrame {
-
+    
     MateriaData materiaData = new MateriaData();
     private boolean editando = false; //Flag para controlar si se está editando una materia
 
@@ -209,9 +209,9 @@ public class MateriaView extends javax.swing.JInternalFrame {
         } else {
             clean();
             JOptionPane.showMessageDialog(null, "Materia no encontrada");
-
+            
         }
-
+        
 
     }//GEN-LAST:event_bBuscarActionPerformed
 
@@ -222,7 +222,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bNuevoActionPerformed
 
     private void bEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEditarActionPerformed
-            Color original=bEditar.getBackground();
+        Color original = bEditar.getBackground();
         if (!editando) {//si no se está editando...
             String idMateria = tfCodigo.getText();
             if (idMateria.isEmpty()) {
@@ -230,7 +230,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
                 return;
             }
             Materia materiaExistente = materiaData.buscarMateria(Integer.parseInt(idMateria));
-
+            
             if (materiaExistente == null) {
                 JOptionPane.showMessageDialog(null, "No se encontró la materia");
                 return;
@@ -271,9 +271,9 @@ public class MateriaView extends javax.swing.JInternalFrame {
             bEditar.setText("Editar");
             clean();
             activar();
-
+            
         }
-
+        
 
     }//GEN-LAST:event_bEditarActionPerformed
 
@@ -304,31 +304,15 @@ public class MateriaView extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_bGuardarActionPerformed
 
     private void tfCodigoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfCodigoKeyTyped
-        /*método para verificar si cada caracter es un numero del 0 al 9 por ASCII y
-        si no lo es borra el caracter.*/
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-        if (!numero) {
-            evt.consume();
-        }
-
+        AccesoService.Service.esNumero(evt);
     }//GEN-LAST:event_tfCodigoKeyTyped
 
     private void tfNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfNombreKeyTyped
-        /*método para verificar si cada caracter es una letra con el método
-        isLetter(). Y además verifica que si es un espacio lo deja escribir
-        Si no lo es se consume el caracter y no lo escribe .*/
-        if (!Character.isLetter(evt.getKeyChar()) && !(evt.getKeyChar() == KeyEvent.VK_SPACE)) {
-            evt.consume();
-        }
+        AccesoService.Service.esLetra(evt);
     }//GEN-LAST:event_tfNombreKeyTyped
 
     private void tfanioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfanioKeyTyped
-        int key = evt.getKeyChar();
-        boolean numero = key >= 48 && key <= 57;
-        if (!numero) {
-            evt.consume();
-        }
+        AccesoService.Service.esNumero(evt);
     }//GEN-LAST:event_tfanioKeyTyped
 
     private void bEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEliminarActionPerformed
@@ -343,12 +327,12 @@ public class MateriaView extends javax.swing.JInternalFrame {
 //            return;
 //        }
 
-    if (idMateria!=null) {
+        if (idMateria != null) {
             materiaData.eliminarMateria(Integer.parseInt(idMateria));
             clean();
             activar();
-        }else{
-            JOptionPane.showConfirmDialog(null, "No se seleccionó ninguna materia a eliminar.","Error",JOptionPane.YES_NO_OPTION);
+        } else {
+            JOptionPane.showConfirmDialog(null, "No se seleccionó ninguna materia a eliminar.", "Error", JOptionPane.YES_NO_OPTION);
         }
     }//GEN-LAST:event_bEliminarActionPerformed
 
@@ -378,18 +362,18 @@ public class MateriaView extends javax.swing.JInternalFrame {
         tfanio.setText("");
         rbEstado.setSelected(false);
     }
-
+    
     private void desactivarId() {
         tfCodigo.setEditable(false);
     }
-
+    
     private void activar() {
         tfCodigo.setEditable(true);
         tfNombre.setEditable(false);
         tfanio.setEditable(false);
         rbEstado.setEnabled(false);
     }
-
+    
     private void activarNAE() {
         tfNombre.setEditable(true);
         tfanio.setEditable(true);

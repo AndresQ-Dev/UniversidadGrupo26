@@ -134,7 +134,7 @@ public class AlumnoData {
             ps.setInt(5, alumno.getIdAlumno());
             int exito = ps.executeUpdate();
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Alumno modificado: ");
+                JOptionPane.showMessageDialog(null, "Alumno modificado. ");
             }
         } catch (SQLSyntaxErrorException sx) {
             JOptionPane.showMessageDialog(null, "Error en Sintaxis de Query: \n" + sx.getMessage());

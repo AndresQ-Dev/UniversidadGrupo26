@@ -47,7 +47,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jDesktopPane1.setBackground(new java.awt.Color(65, 67, 76));
         jDesktopPane1.setPreferredSize(new java.awt.Dimension(1024, 769));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/navy.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/templatULP.png"))); // NOI18N
         jLabel1.setPreferredSize(new java.awt.Dimension(1024, 769));
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);

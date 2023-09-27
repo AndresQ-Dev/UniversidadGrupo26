@@ -1,13 +1,11 @@
-
 package entidades;
 
+public class Materia implements Comparable<Materia> {
 
-public class Materia {
-
-private int idMateria;
-private String nombre;
-private int anioMateria;
-private boolean activo;
+    private int idMateria;
+    private String nombre;
+    private int anioMateria;
+    private boolean activo;
 
     public Materia() {
     }
@@ -66,6 +64,9 @@ private boolean activo;
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
+    @Override
+    public int compareTo(Materia o) {
+        return this.nombre.compareToIgnoreCase(o.getNombre());
+    }
 
-    
 }
