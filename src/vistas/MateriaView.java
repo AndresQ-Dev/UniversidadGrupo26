@@ -110,8 +110,9 @@ public class MateriaView extends javax.swing.JInternalFrame {
         lEstado.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         lEstado.setForeground(new java.awt.Color(255, 255, 255));
         lEstado.setText("Estado");
+        lEstado.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         jPanel1.add(lEstado);
-        lEstado.setBounds(30, 340, 61, 28);
+        lEstado.setBounds(30, 350, 110, 28);
 
         rbEstado.setEnabled(false);
         jPanel1.add(rbEstado);
@@ -209,7 +210,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
             tfNombre.setText(materiaEncontrada.getNombre());
             tfanio.setText(Integer.toString(materiaEncontrada.getAnioMateria()));
             rbEstado.setSelected(materiaEncontrada.isActivo());
-            rbEstado.setEnabled(true);
+            rbEstado.setEnabled(false);
             activarBotones();
         } else {
             clean();
@@ -276,7 +277,8 @@ public class MateriaView extends javax.swing.JInternalFrame {
             editando = false;
             bEditar.setText("Editar");
             clean();
-            desactivar();
+            desactivarElementos();
+            desactivarBotones();
         }
     }//GEN-LAST:event_bEditarActionPerformed
 
@@ -285,8 +287,14 @@ public class MateriaView extends javax.swing.JInternalFrame {
         String anioMateria = tfanio.getText();
 
         //Validar campos vacios
-        if (nombreMateria.isEmpty() || anioMateria.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Complete los campos");
+        int anio = Integer.parseInt(anioMateria);
+        if (anio < 1 || anio > 5) {
+            JOptionPane.showMessageDialog(null, "El año de la materia debe ser entre 1 y 5.");
+            return;
+        }
+        //Validar que el año entre 1 y 5
+        if (anio < 1 || anio > 5) {
+            JOptionPane.showMessageDialog(null, "El año de la materia debe ser entre 1 y 5.");
             return;
         }
         //Validar si materia existe por nombre
@@ -300,6 +308,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
             tfanio.setText(String.valueOf(materiaExistente.getAnioMateria()));
             rbEstado.setSelected(materiaExistente.isActivo());
             activarBotones();
+            desactivarElementos();
         } else {
             //si no existe setteo y guardo...
             Materia nuevaMateria = new Materia();
@@ -308,7 +317,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
             nuevaMateria.setActivo(rbEstado.isSelected());
             materiaData.guardarMateria(nuevaMateria);
             clean();
-            desactivar();
+            desactivarElementos();
             desactivarBotones();
         }
     }//GEN-LAST:event_bGuardarActionPerformed
@@ -330,7 +339,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         if (idMateria != null) {
             materiaData.eliminarMateria(Integer.parseInt(idMateria));
             clean();
-            desactivar();
+            desactivarElementos();
         } else {
             JOptionPane.showConfirmDialog(null, "No se seleccionó ninguna materia a eliminar.", "Error", JOptionPane.YES_NO_OPTION);
         }
@@ -367,7 +376,7 @@ public class MateriaView extends javax.swing.JInternalFrame {
         tfCodigo.setEditable(false);
     }
 
-    private void desactivar() {
+    private void desactivarElementos() {
         tfCodigo.setEditable(true);
         tfNombre.setEditable(false);
         tfanio.setEditable(false);
