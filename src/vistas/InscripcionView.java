@@ -263,8 +263,7 @@ public class InscripcionView extends javax.swing.JInternalFrame {
 
     private void cargarCombo() {
         
-        List<Alumno> listaAlumnos = new ArrayList();
-        listaAlumnos = alumnoData.listarAlumnos();
+        List<Alumno> listaAlumnos = alumnoData.listarAlumnos();
         Collections.sort(listaAlumnos);
         for (Alumno listaAlumno : listaAlumnos) {
             cbListadodeAlumnos.addItem(listaAlumno);
@@ -279,9 +278,8 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     }
     
     private void cargarMateriasInscriptas() {
-        List<Materia> listaMaterias = new ArrayList();
         Alumno alumno = (Alumno) cbListadodeAlumnos.getSelectedItem();
-        listaMaterias = inscripcionData.obtenerMateriasCursadas(alumno.getIdAlumno());
+        List<Materia> listaMaterias = inscripcionData.obtenerMateriasCursadas(alumno.getIdAlumno());
         
         if (listaMaterias != null) {
             for (Materia listaMateria : listaMaterias) {
@@ -291,9 +289,8 @@ public class InscripcionView extends javax.swing.JInternalFrame {
     }
     
     private void cargarMateriasNoInscriptas() {
-        List<Materia> listaMaterias = new ArrayList();
         Alumno alumno = (Alumno) cbListadodeAlumnos.getSelectedItem();
-        listaMaterias = inscripcionData.obtenerMateriasNoCursadas(alumno.getIdAlumno());
+        List<Materia> listaMaterias = inscripcionData.obtenerMateriasNoCursadas(alumno.getIdAlumno());
         
         if (listaMaterias != null) {
             for (Materia listaMateria : listaMaterias) {
