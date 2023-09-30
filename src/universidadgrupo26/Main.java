@@ -118,7 +118,7 @@ public class Main {
             System.out.println("Año "+listaNoCursada.getAnioMateria());
             System.out.println("==========================");
         
-        }*/
+        }
         //Método borrarInscripcionMateriaAlumno
         //inscripcionData.borrarInscripcionMateriaAlumno(1, 2);
         //Método actualizarNota
@@ -141,7 +141,18 @@ public class Main {
         } else {
             JOptionPane.showMessageDialog(null, "No hay alumnos inscriptos en esta materia");
         }
-        
-        //Prueba Método 
+        //Prueba Método buscar Alumno por Apellido (Extra)
+        List<Alumno> listaEncontrados = new ArrayList<>();
+        listaEncontrados = alumnoData.buscarAlumno(123123);
+        if (listaEncontrados!=null) {            
+        for (Alumno encontrado : listaEncontrados) {
+            System.out.println(encontrado.getIdAlumno());
+            System.out.println(encontrado.getApellido());
+            System.out.println(encontrado.getNombre());
+            System.out.println(encontrado.isActivo());
+            System.out.println("*********************");
+            }
+        }*/
+
     }
 }

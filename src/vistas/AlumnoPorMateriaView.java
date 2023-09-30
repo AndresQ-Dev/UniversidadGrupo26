@@ -69,14 +69,14 @@ public class AlumnoPorMateriaView extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel2);
         jLabel2.setBounds(80, 90, 190, 18);
 
-        cBlistadoMaterias.setFont(new java.awt.Font("Cantarell", 0, 15)); // NOI18N
+        cBlistadoMaterias.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         cBlistadoMaterias.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cBlistadoMateriasActionPerformed(evt);
             }
         });
         jPanel1.add(cBlistadoMaterias);
-        cBlistadoMaterias.setBounds(280, 90, 260, 25);
+        cBlistadoMaterias.setBounds(280, 90, 260, 24);
 
         tBListaalumnos.setFont(new java.awt.Font("Cantarell", 0, 15)); // NOI18N
         tBListaalumnos.setModel(new javax.swing.table.DefaultTableModel(

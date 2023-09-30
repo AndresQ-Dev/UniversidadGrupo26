@@ -39,6 +39,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuItemNotas = new javax.swing.JMenuItem();
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemAlumXMateria = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,6 +147,15 @@ public class PrincipalView extends javax.swing.JFrame {
         });
         jMenuConsultas.add(jMenuItemAlumXMateria);
 
+        jMenuItem1.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        jMenuItem1.setText("Alumnos por Apellido");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItem1);
+
         jMenuBar1.add(jMenuConsultas);
 
         jMenuSalir.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -245,6 +255,15 @@ public class PrincipalView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenuSalirMousePressed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        AlumnosPorApellidoView alumnosXApellidoView=new AlumnosPorApellidoView();
+        jDesktopPane1.add(alumnosXApellidoView);
+        alumnosXApellidoView.centrarEnDesktopPane();
+        alumnosXApellidoView.setVisible(true);
+        alumnosXApellidoView.moveToFront();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -289,6 +308,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenuItem jMenuFormularioMateria;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItemAlumXMateria;
     private javax.swing.JMenuItem jMenuItemAlumno;
     private javax.swing.JMenuItem jMenuItemInscripciones;

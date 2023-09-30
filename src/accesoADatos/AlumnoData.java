@@ -192,4 +192,40 @@ public class AlumnoData {
         return resultSet.next();
     }
 
+    public List<Alumno> listaAlumnosPorApellido(String apellido) {
+        List<Alumno> listaCoincidencia = new ArrayList<>();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+
+            String sql = "SELECT idAlumno,dni,apellido,nombre FROM alumno WHERE apellido LIKE ? AND estado=1 ";
+            try {
+
+                ps = con.prepareStatement(sql);
+                ps.setString(1, "%" + apellido + "%");
+
+                rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    Alumno alumno = new Alumno();
+                    alumno.setIdAlumno(rs.getInt("idAlumno"));
+                    alumno.setDni(rs.getInt("dni"));
+                    alumno.setApellido(rs.getString("apellido"));
+                    alumno.setNombre(rs.getString("nombre"));
+                    listaCoincidencia.add(alumno);
+                }
+
+            } catch (SQLSyntaxErrorException sy) {
+                JOptionPane.showMessageDialog(null, "Error en sintaxis de sentencia SQL:\n " + sy.getMessage());
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder a la tabla Alumno " + e.getMessage());
+        } finally {
+            //ps.close();
+            //rs.close();
+            //con.Conexion.cerrarConexion();
+        }
+        return listaCoincidencia;
+    }
+
 }
