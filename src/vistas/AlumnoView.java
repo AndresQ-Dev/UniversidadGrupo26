@@ -269,6 +269,7 @@ public class AlumnoView extends javax.swing.JInternalFrame {
             } else {
                 clean();
                 JOptionPane.showMessageDialog(null, "Alumno no encontrado");
+                tfDocumento.requestFocus();
             }
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Debe ingresar un DNI. \n" + e.getMessage());

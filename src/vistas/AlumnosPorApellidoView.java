@@ -41,13 +41,14 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        tfPanelApellido = new javax.swing.JLabel();
+        lbPanelApellido = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        tfPanelNombre = new javax.swing.JLabel();
+        lbPanelNombre = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        tfPanelDni = new javax.swing.JLabel();
+        lbPanelDni = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        tfPanelId = new javax.swing.JTextField();
+        lbPanelId = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setClosable(true);
 
@@ -116,37 +117,39 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Apellido");
+        jLabel4.setText("Apellido:");
 
-        tfPanelApellido.setFont(new java.awt.Font("Roboto Medium", 1, 15)); // NOI18N
-        tfPanelApellido.setForeground(new java.awt.Color(0, 204, 255));
-        tfPanelApellido.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        tfPanelApellido.setText("*********");
+        lbPanelApellido.setFont(new java.awt.Font("Roboto Medium", 1, 15)); // NOI18N
+        lbPanelApellido.setForeground(new java.awt.Color(0, 204, 255));
+        lbPanelApellido.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbPanelApellido.setText("*********");
 
         jLabel6.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Nombre: ");
 
-        tfPanelNombre.setFont(new java.awt.Font("Roboto Medium", 1, 15)); // NOI18N
-        tfPanelNombre.setForeground(new java.awt.Color(0, 204, 255));
-        tfPanelNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        tfPanelNombre.setText("*********");
+        lbPanelNombre.setFont(new java.awt.Font("Roboto Medium", 1, 15)); // NOI18N
+        lbPanelNombre.setForeground(new java.awt.Color(0, 204, 255));
+        lbPanelNombre.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbPanelNombre.setText("*********");
 
         jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Dni:");
 
-        tfPanelDni.setFont(new java.awt.Font("Roboto Medium", 1, 15)); // NOI18N
-        tfPanelDni.setForeground(new java.awt.Color(0, 204, 255));
-        tfPanelDni.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        tfPanelDni.setText("*********");
+        lbPanelDni.setFont(new java.awt.Font("Roboto Medium", 1, 15)); // NOI18N
+        lbPanelDni.setForeground(new java.awt.Color(0, 204, 255));
+        lbPanelDni.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbPanelDni.setText("*********");
 
-        jLabel5.setText("ID");
+        jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("ID:");
 
-        tfPanelId.setFont(new java.awt.Font("Roboto Medium", 1, 15)); // NOI18N
-        tfPanelId.setForeground(new java.awt.Color(0, 204, 255));
-        tfPanelId.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
-        tfPanelId.setText("*********");
+        lbPanelId.setFont(new java.awt.Font("Roboto Medium", 1, 15)); // NOI18N
+        lbPanelId.setForeground(new java.awt.Color(0, 204, 255));
+        lbPanelId.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbPanelId.setText("*********");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -155,11 +158,12 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(lbPanelApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(tfPanelDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tfPanelNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbPanelDni, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lbPanelNombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,8 +171,8 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(tfPanelId)))
-                    .addComponent(tfPanelApellido, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(lbPanelId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator1))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -176,22 +180,24 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addComponent(jLabel5)
-                .addGap(18, 18, 18)
-                .addComponent(tfPanelId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(lbPanelId)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfPanelApellido)
+                .addComponent(lbPanelApellido)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
-                .addComponent(tfPanelNombre)
+                .addComponent(lbPanelNombre)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel8)
                 .addGap(18, 18, 18)
-                .addComponent(tfPanelDni)
+                .addComponent(lbPanelDni)
                 .addContainerGap())
         );
 
@@ -202,11 +208,11 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 878, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
         );
 
         pack();
@@ -241,10 +247,10 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
         int idAlumno = (int) tbEncontrados.getValueAt(fila, 0);
         Alumno alumno = alumnoData.buscarAlumno(idAlumno);
         if (alumno != null && alumno.isActivo()) {
-            tfPanelId.setText(String.valueOf(alumno.getIdAlumno()));
-            tfPanelApellido.setText(alumno.getApellido());
-            tfPanelNombre.setText(alumno.getNombre());
-            tfPanelDni.setText(String.valueOf(alumno.getDni()));
+            lbPanelId.setText(String.valueOf(alumno.getIdAlumno()));
+            lbPanelApellido.setText(alumno.getApellido());
+            lbPanelNombre.setText(alumno.getNombre());
+            lbPanelDni.setText(String.valueOf(alumno.getDni()));
         }
     }//GEN-LAST:event_tbEncontradosMouseClicked
 
@@ -264,12 +270,13 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel lbPanelApellido;
+    private javax.swing.JLabel lbPanelDni;
+    private javax.swing.JLabel lbPanelId;
+    private javax.swing.JLabel lbPanelNombre;
     private javax.swing.JTable tbEncontrados;
     private javax.swing.JTextField tfApellido;
-    private javax.swing.JLabel tfPanelApellido;
-    private javax.swing.JLabel tfPanelDni;
-    private javax.swing.JTextField tfPanelId;
-    private javax.swing.JLabel tfPanelNombre;
     // End of variables declaration//GEN-END:variables
 
     public void cabecera() {
@@ -289,9 +296,9 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
     }
 
     public void cleanPanel() {
-        tfPanelId.setText("*********");
-        tfPanelDni.setText("*********");
-        tfPanelApellido.setText("*********");
-        tfPanelNombre.setText("*********");
+        lbPanelId.setText("*********");
+        lbPanelDni.setText("*********");
+        lbPanelApellido.setText("*********");
+        lbPanelNombre.setText("*********");
     }
 }

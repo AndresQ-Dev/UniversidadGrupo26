@@ -43,6 +43,7 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(65, 67, 76));
