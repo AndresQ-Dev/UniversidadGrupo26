@@ -153,6 +153,13 @@ public class Main {
             System.out.println("*********************");
             }
         }*/
+        List<Materia> listaMaterias=materiaData.listaMateriasBaja("Base");
+        for (Materia listaMateria : listaMaterias) {
+            System.out.println(listaMateria.getIdMateria());
+            System.out.println(listaMateria.getNombre());
+            System.out.println(listaMateria.getAnioMateria());
+            System.out.println("*********************");
+        }
 
     }
 }

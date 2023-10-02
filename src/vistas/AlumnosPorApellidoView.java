@@ -62,6 +62,7 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(20, 70, 200, 30);
 
+        tfApellido.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         tfApellido.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 tfApellidoPropertyChange(evt);
@@ -224,7 +225,7 @@ public class AlumnosPorApellidoView extends javax.swing.JInternalFrame {
 
     private void tfApellidoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfApellidoKeyReleased
         cleanPanel();
-// busqueda por cada letra tecleada...
+        // busqueda por cada letra tecleada...
         String apellido = tfApellido.getText();
         List<Alumno> alumnoEncontrado = alumnoData.listaAlumnosPorApellido(apellido);
 

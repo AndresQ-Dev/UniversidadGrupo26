@@ -5,6 +5,7 @@ AGREGAR VALIDACIONES
 package vistas;
 
 import accesoADatos.AlumnoData;
+import accesoADatos.InscripcionData;
 import entidades.Alumno;
 import java.awt.Dimension;
 import java.sql.Date;
@@ -19,8 +20,8 @@ import javax.swing.JOptionPane;
 public class AlumnoView extends javax.swing.JInternalFrame {
 
     AlumnoData alumnoData = new AlumnoData();
+    InscripcionData inscripcionData = new InscripcionData();
 
-  
     public AlumnoView() {
         initComponents();
         setSize(586, 524);
@@ -286,8 +287,12 @@ public class AlumnoView extends javax.swing.JInternalFrame {
         String dni = tfDocumento.getText();
         Alumno alumnoEncontrado = alumnoData.buscarAlumnoPorDni(Integer.parseInt(dni));
         if (alumnoEncontrado != null) {
-            alumnoData.eliminarAlumno(alumnoEncontrado.getIdAlumno());
-            clean();
+            if (!inscripcionData.alumnoEstaInscrito(alumnoEncontrado.getIdAlumno())) {
+                alumnoData.eliminarAlumno(alumnoEncontrado.getIdAlumno());
+                clean();
+            }else{
+                JOptionPane.showMessageDialog(null, "El alumno esta inscripto en una materia, no puede eliminarlo.");
+            }
         }
         desactivarCampos();
         desactivarBotones();

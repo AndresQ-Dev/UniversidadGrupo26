@@ -1,10 +1,13 @@
 package accesoADatos;
 
+import entidades.Alumno;
 import entidades.Materia;
 import java.sql.*;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
@@ -25,10 +28,10 @@ public class MateriaData {
             ps.setInt(2, materia.getAnioMateria());
             ps.setBoolean(3, materia.isActivo());
             ps.executeUpdate();
-            ResultSet rs=ps.getGeneratedKeys();
+            ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
-                int idMateria=rs.getInt(1);
-                JOptionPane.showMessageDialog(null, "Materia ingresada correctamente con Id: "+idMateria);
+                int idMateria = rs.getInt(1);
+                JOptionPane.showMessageDialog(null, "Materia ingresada correctamente con Id: " + idMateria);
             }
         } catch (SQLIntegrityConstraintViolationException dupEx) {
             JOptionPane.showMessageDialog(null, "Error: La materia con el mismo nombre ya existe en la base de datos.");
@@ -72,7 +75,7 @@ public class MateriaData {
             ps.setString(1, nombreMateria);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                materiaBuscada=new Materia();
+                materiaBuscada = new Materia();
                 materiaBuscada.setIdMateria(rs.getInt("idMateria"));
                 materiaBuscada.setNombre(rs.getString("nombre"));
                 materiaBuscada.setAnioMateria(rs.getInt("año"));
@@ -179,5 +182,43 @@ public class MateriaData {
             JOptionPane.showMessageDialog(null, "No se puede acceder a la materia" + ex.getMessage());
         }
         return materias;
+    }
+
+    public void activarMateria(int id) {
+        String sql = "UPDATE materia SET estado=1 WHERE idMateria=?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+            if (exito >= 0) {
+                JOptionPane.showMessageDialog(null, "Materia Activada");
+            }
+        } catch (SQLSyntaxErrorException syn) {
+            JOptionPane.showMessageDialog(null, "Error de Sintaxis en sentencia SQL: " + syn.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder a Materia: " + ex.getMessage());
+        }
+    }
+
+    public List<Materia> listaMateriasBaja(String nombre) {
+        List<Materia> listaMateriasbaja = new ArrayList<>();
+        String sql = "SELECT idMateria,nombre,año,estado FROM materia WHERE nombre LIKE ? AND estado=0";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + nombre + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Materia materia = new Materia();
+                    materia.setIdMateria(rs.getInt("idMateria"));
+                    materia.setNombre(rs.getString("nombre"));
+                    materia.setAnioMateria(rs.getInt("año"));
+                    materia.setActivo(rs.getBoolean("estado"));
+                    listaMateriasbaja.add(materia);
+                }
+            } catch (SQLSyntaxErrorException syn) {
+                JOptionPane.showMessageDialog(null, "Error de Sintaxis en sentencia SQL: " + syn.getMessage());
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder a Materia: " + ex.getMessage());
+        }
+        return listaMateriasbaja;
     }
 }

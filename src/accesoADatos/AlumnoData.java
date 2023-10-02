@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import java.sql.SQLSyntaxErrorException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AlumnoData {
 
@@ -226,6 +228,48 @@ public class AlumnoData {
             //con.Conexion.cerrarConexion();
         }
         return listaCoincidencia;
+    }
+
+    public List<Alumno> listaAlumnosBaja(String apellido) {
+        List<Alumno> listaAlumnosBaja = new ArrayList<>();
+        String sql = "SELECT idAlumno, dni, apellido, nombre, fechaNacimiento, estado FROM alumno WHERE apellido LIKE ? AND estado = 0";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, "%" + apellido + "%");
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Alumno alumno = new Alumno();
+                    alumno.setIdAlumno(rs.getInt("idAlumno"));
+                    alumno.setDni(rs.getInt("dni"));
+                    alumno.setApellido(rs.getString("apellido"));
+                    alumno.setNombre(rs.getString("nombre"));
+                    alumno.setFechaNac(rs.getDate("fechaNacimiento").toLocalDate());
+                    alumno.setActivo(rs.getBoolean("estado"));
+                    listaAlumnosBaja.add(alumno);
+                }
+            }
+        } catch (SQLSyntaxErrorException syntax) {
+            JOptionPane.showMessageDialog(null, "Error de sintaxis en sentencia SQL: " + syntax.getMessage());
+            syntax.printStackTrace();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder a la tabla Alumno: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return listaAlumnosBaja;
+    }
+
+    public void activarAlumno(int id) {
+        String sql = "UPDATE alumno SET estado=1 Where idAlumno=?";
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, id);
+            int exito = ps.executeUpdate();
+            if (exito > 0) {
+                JOptionPane.showMessageDialog(null, "Estado actualizado");
+            }
+        } catch (SQLSyntaxErrorException syn) {
+            JOptionPane.showMessageDialog(null, "Error de sintaxis: " + syn.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "No se puede acceder a Alumno: " + ex.getMessage());
+        }
     }
 
 }

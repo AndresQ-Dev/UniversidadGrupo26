@@ -47,7 +47,7 @@ public class InscripcionData {
         } catch (SQLException ex) {
             Logger.getLogger(InscripcionData.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-           // Conexion.cerrarConexion();
+            // Conexion.cerrarConexion();
         }
 
     }
@@ -235,5 +235,12 @@ public class InscripcionData {
         }
         return alumnoPorMateria;
 
+    }
+
+    public boolean alumnoEstaInscrito(int idAlumno) {
+        // Obtener inscripciones de alumno
+        List<Inscripcion> inscripcionesAlumno = obtenerInscripcionesPorAlumno(idAlumno);
+        // Verifica si el alumno tiene al menos una inscripción
+        return !inscripcionesAlumno.isEmpty();//si hay al menos una inscripción devuelve TRUE.
     }
 }

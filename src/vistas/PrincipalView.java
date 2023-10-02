@@ -40,10 +40,10 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuConsultas = new javax.swing.JMenu();
         jMenuItemAlumXMateria = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuSalir = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
         setResizable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(65, 67, 76));
@@ -138,6 +138,11 @@ public class PrincipalView extends javax.swing.JFrame {
         jMenuConsultas.setText("Consultas      ");
         jMenuConsultas.setContentAreaFilled(false);
         jMenuConsultas.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        jMenuConsultas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuConsultasActionPerformed(evt);
+            }
+        });
 
         jMenuItemAlumXMateria.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
         jMenuItemAlumXMateria.setText("Alumnos por Materia");
@@ -156,6 +161,15 @@ public class PrincipalView extends javax.swing.JFrame {
             }
         });
         jMenuConsultas.add(jMenuItem1);
+
+        jMenuItem2.setFont(new java.awt.Font("Roboto Medium", 0, 15)); // NOI18N
+        jMenuItem2.setText("Alumnos/Materia Bajas");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuConsultas.add(jMenuItem2);
 
         jMenuBar1.add(jMenuConsultas);
 
@@ -265,6 +279,18 @@ public class PrincipalView extends javax.swing.JFrame {
         alumnosXApellidoView.moveToFront();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+    private void jMenuConsultasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuConsultasActionPerformed
+    
+    }//GEN-LAST:event_jMenuConsultasActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    BajasView bajasView=new BajasView();
+    jDesktopPane1.add(bajasView);
+    bajasView.centrarEnDesktopPane();
+    bajasView.setVisible(true);
+    bajasView.moveToFront();
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -310,6 +336,7 @@ public class PrincipalView extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuConsultas;
     private javax.swing.JMenuItem jMenuFormularioMateria;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItemAlumXMateria;
     private javax.swing.JMenuItem jMenuItemAlumno;
     private javax.swing.JMenuItem jMenuItemInscripciones;

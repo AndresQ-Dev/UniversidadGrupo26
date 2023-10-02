@@ -76,7 +76,7 @@ public class AlumnoPorMateriaView extends javax.swing.JInternalFrame {
             }
         });
         jPanel1.add(cBlistadoMaterias);
-        cBlistadoMaterias.setBounds(280, 90, 260, 24);
+        cBlistadoMaterias.setBounds(250, 90, 290, 24);
 
         tBListaalumnos.setFont(new java.awt.Font("Cantarell", 0, 15)); // NOI18N
         tBListaalumnos.setModel(new javax.swing.table.DefaultTableModel(
